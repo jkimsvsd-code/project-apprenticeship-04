@@ -1,0 +1,35 @@
+# Local secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Dependencies and generated build output
+node_modules/
+.next/
+dist/
+build/
+coverage/
+playwright-report/
+test-results/
+.vercel/
+
+# Local runtime data; publish reviewed evidence explicitly under evidence/
+.data/
+*.sqlite
+*.sqlite3
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+*.sqlite3-journal
+*.sqlite3-wal
+*.sqlite3-shm
+
+# Temporary files and machine-specific output
+.DS_Store
+*.log
+tmp/
+.cache/
