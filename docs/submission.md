@@ -4,8 +4,14 @@
 
 ## 주소
 
-- 결과물 주소: 미정
-- 공개 소스 주소: 미정
+- 결과물 주소: 미정. HTTPS URL 한 개를 제출합니다(C34).
+- 공개 소스 주소: 최종 제출 commit을 고정한 HTTPS URL 한 개를 제출합니다(C35).
+
+저장소는 [jkimsvsd-code/project-apprenticeship-04](https://github.com/jkimsvsd-code/project-apprenticeship-04)입니다. 제출 시 저장소 첫 화면이나 `/tree/main` 대신 `https://github.com/jkimsvsd-code/project-apprenticeship-04/tree/` 뒤에 최종 커밋의 전체 40자리 소문자 hex ID를 붙입니다. 최종 변경을 커밋·push한 뒤 `git rev-parse HEAD`로 확인합니다.
+
+## 실제 이틀 영수증
+
+플랫폼의 공식 절차로 canonical kind `t04_day` 영수증 정확히 2건을 남겨야 합니다. 각 `server_created_at`의 KST 날짜가 달라야 하며, payload의 원천 URL·원천 시각·정규화 값·단위를 앱 저장값·화면값과 대조합니다. 현재 영수증은 없습니다. 학생이 별도의 봉인 파일이나 증거 ZIP을 직접 만들지 않습니다.
 
 ## 짧은 확인 방법 4줄
 

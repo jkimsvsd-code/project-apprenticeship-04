@@ -1,0 +1,38 @@
+{
+  "purpose": "source_selection_only",
+  "qualifies_as_t04_day": false,
+  "app_daily_row_created": false,
+  "sealed_receipt_created": false,
+  "source_request": {
+    "name": "weather-probe.json",
+    "url": "https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current=temperature_2m&temperature_unit=celsius&timeformat=unixtime&timezone=Asia%2FSeoul",
+    "status": 200,
+    "type": "application/json; charset=utf-8",
+    "bytes": 324,
+    "retrieved_at": "2026-10-26T00:34:03.383806+00:00"
+  },
+  "raw_response_file": "raw-response.json",
+  "raw_response_sha256": "41fe5f23d57f67711466122e0daf19bfeb03a3853853fe1ab6070d5637f0c050",
+  "requested_coordinates": {
+    "latitude": 37.5665,
+    "longitude": 126.978
+  },
+  "returned_grid_coordinates": {
+    "latitude": 37.55,
+    "longitude": 127.0
+  },
+  "normalization_validated_by": "hash-verified official reference adapter validateNormalizedReading; source fields checked separately",
+  "reading_preview": {
+    "signal_id": "seoul-temperature-2m",
+    "normalized_value": 15.4,
+    "unit": "°C",
+    "source_name": "Open-Meteo",
+    "source_url": "https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current=temperature_2m&temperature_unit=celsius&timeformat=unixtime&timezone=Asia%2FSeoul",
+    "source_time": "2026-10-26T00:30:00+00:00",
+    "fetched_at": "2026-10-26T00:34:03.383806+00:00",
+    "record_timezone": "Asia/Seoul",
+    "record_date": "2026-10-26"
+  },
+  "source_time_kst": "2026-10-26T09:30:00+09:00",
+  "attribution": "Weather data by Open-Meteo.com (CC BY 4.0)."
+}

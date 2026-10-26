@@ -1,0 +1,23 @@
+{
+  "signal_id": "seoul-temperature-2m",
+  "display_name": "서울 현재 기온",
+  "source_name": "Open-Meteo",
+  "source_description": "고정된 서울 대표 지점의 모델 기반 지상 2m 기온. 관측소 실측값이 아님.",
+  "source_url": "https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current=temperature_2m&temperature_unit=celsius&timeformat=unixtime&timezone=Asia%2FSeoul",
+  "documentation_url": "https://open-meteo.com/en/docs",
+  "terms_url": "https://open-meteo.com/en/terms",
+  "attribution_url": "https://open-meteo.com/",
+  "attribution_text": "Weather data by Open-Meteo.com (CC BY 4.0).",
+  "record_timezone": "Asia/Seoul",
+  "unit": "°C",
+  "value_path": "current.temperature_2m",
+  "source_time_path": "current.time",
+  "source_time_format": "unix_seconds_utc",
+  "unit_path": "current_units.temperature_2m",
+  "request_coordinates": { "latitude": 37.5665, "longitude": 126.9780 },
+  "coordinates_are_user_location": false,
+  "api_key_required": false,
+  "usage_scope": "non-commercial educational project",
+  "delta_rule": "current.normalized_value - previous.normalized_value",
+  "comparison_display": "direction plus absolute magnitude in °C; show compared dates"
+}

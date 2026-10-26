@@ -1,6 +1,6 @@
 # 시험 구성
 
-현재 자동 시험은 구현되어 있지 않습니다. [검증 계획](../docs/verification.md)에 따라 스택에 맞는 시험 도구와 명령을 추가합니다.
+현재 제품 자동 시험은 구현되어 있지 않습니다. `node scripts/verify-task-assets.mjs`는 공식 자산의 무결성과 참조 adapter만 검사합니다. [검증 계획](../docs/verification.md)에 따라 제품용 시험 도구와 명령을 추가합니다.
 
 - `unit/`: 날짜·계산·상태 전이 등 순수 규칙
 - `integration/`: 원천 응답·저장·공식 fixture 계약
