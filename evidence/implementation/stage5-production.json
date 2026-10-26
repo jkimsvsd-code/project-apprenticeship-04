@@ -1,0 +1,74 @@
+{
+  "verified_at": "2026-10-26T02:24:04.223Z",
+  "code_commit": "ff66e244927a7c45d5257480872dec5905cacef6",
+  "team": "jkimsvsd-code",
+  "project": "project-apprenticeship-04",
+  "target": "production",
+  "deployment_url": "https://project-apprenticeship-04-4oydbe9a9-jkimsvsd-code.vercel.app",
+  "public_url": "https://project-apprenticeship-04.vercel.app/#simulation",
+  "deployment_status": "Ready",
+  "build_duration_seconds": 15,
+  "page_http_status": 200,
+  "read_api_http_status": 200,
+  "authentication_required": false,
+  "actual_production_board_unchanged": true,
+  "browser_checks": [
+    {
+      "error_code": "timeout",
+      "preserved_value": 105,
+      "preserved_rows": 1,
+      "recovered_value": 120,
+      "recovered_rows": 2,
+      "recovered_status": {
+        "freshness": "fresh",
+        "error_code": "none"
+      }
+    },
+    {
+      "error_code": "auth",
+      "preserved_value": 105,
+      "preserved_rows": 1,
+      "recovered_value": 120,
+      "recovered_rows": 2,
+      "recovered_status": {
+        "freshness": "fresh",
+        "error_code": "none"
+      }
+    },
+    {
+      "error_code": "rate_limit",
+      "preserved_value": 105,
+      "preserved_rows": 1,
+      "recovered_value": 120,
+      "recovered_rows": 2,
+      "recovered_status": {
+        "freshness": "fresh",
+        "error_code": "none"
+      }
+    },
+    {
+      "error_code": "offline",
+      "preserved_value": 105,
+      "preserved_rows": 1,
+      "recovered_value": 120,
+      "recovered_rows": 2,
+      "recovered_status": {
+        "freshness": "fresh",
+        "error_code": "none"
+      }
+    },
+    {
+      "error_code": "schema_error",
+      "preserved_value": 105,
+      "preserved_rows": 1,
+      "recovered_value": 120,
+      "recovered_rows": 2,
+      "recovered_status": {
+        "freshness": "fresh",
+        "error_code": "none"
+      }
+    }
+  ],
+  "sealed_t04_day_receipts": 0,
+  "actual_two_day_verification_complete": false
+}

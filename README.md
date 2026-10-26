@@ -131,4 +131,6 @@ Vercel 프로젝트와 GitHub가 연결되어 있으며 Development/Preview와 P
 
 4단계 코드의 Vercel 빌드가 Ready이며, 배포 화면·읽기 API의 무로그인 HTTP 200과 운영 첫 조회·재접속 보존을 확인했습니다. [운영 검증 자료](evidence/implementation/production-first-reading.json)는 실제 한 날짜의 기록입니다. 플랫폼 봉인 영수증은 0건이므로 실제 이틀 검증 완료가 아닙니다.
 
+5단계 코드도 운영 배포 Ready이며, 공개 패널에서 실패 5종별 105pt·1건 보존 → 120pt·2건·정상 복구를 확인했습니다. [5단계 운영 검증](evidence/implementation/stage5-production.json)에 코드 commit·무로그인 접근·실제 운영 기록 불변 대조를 기록했습니다.
+
 Open-Meteo 데이터는 출처와 CC BY 4.0을 표시하며 무료 API는 비상업 교육용으로 사용합니다. 공식 과제 자산은 원본·출처·해시를 보존합니다. 과제 자산에는 별도의 라이선스 파일이 없어 추가 권리를 임의로 부여하지 않습니다. 프로젝트 자체 라이선스는 아직 정하지 않았습니다.
