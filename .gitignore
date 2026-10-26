@@ -1,6 +1,9 @@
 # Local secrets
 .env
 .env.*
+/.env.local
+/.env.production.local
+/.env.runtime.local
 !.env.example
 *.pem
 *.key
@@ -33,3 +36,4 @@ test-results/
 *.log
 tmp/
 .cache/
+*.tsbuildinfo

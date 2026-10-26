@@ -1,0 +1,45 @@
+{
+  "verified_at": "2026-10-26T01:43:28.513Z",
+  "scope": "stage4_basic_live_flow_on_development_database",
+  "api_status": 200,
+  "reading": {
+    "signal_id": "seoul-temperature-2m",
+    "record_date": "2026-10-26",
+    "normalized_value": 16.3,
+    "unit": "°C",
+    "source_name": "Open-Meteo",
+    "source_url": "https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current=temperature_2m&temperature_unit=celsius&timeformat=unixtime&timezone=Asia%2FSeoul",
+    "source_time": "2026-10-26T01:30:00.000Z",
+    "fetched_at": "2026-10-26T01:42:34.671Z",
+    "record_timezone": "Asia/Seoul"
+  },
+  "record_id": "055eefab-b219-44dc-93ba-71dfd4ced367",
+  "development_daily_row_count": 1,
+  "production_daily_row_count": 0,
+  "separate_database_hosts": true,
+  "raw_storage_value_match": true,
+  "raw_response_sha256": "e487f54b9a6358575492bca15113feca87907b055d05a1cc1011cb36f4b67957",
+  "browser_checks": [
+    "initial empty state",
+    "refresh button disables during request",
+    "successful source fetch and save",
+    "one row after repeated same-day success",
+    "saved value visible after reload"
+  ],
+  "checks": {
+    "typescript": "pass",
+    "eslint": "pass",
+    "unit_tests": 12,
+    "database_integration_tests": 4,
+    "production_build": "pass",
+    "origin_host_regression": "pass",
+    "foreign_origin_and_arbitrary_payload_rejection": "pass",
+    "npm_ci_dry_run": "pass; no peer dependency warnings",
+    "secret_scan": "pass; exact local secret values absent from repository candidates and browser build assets",
+    "environment_files_git_ignored": "pass",
+    "markdown_links": 38
+  },
+  "sealed_t04_day_receipts": 0,
+  "actual_two_day_verification_complete": false,
+  "fixture_replay_panel_implemented": false
+}

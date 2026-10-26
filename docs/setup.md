@@ -1,6 +1,6 @@
 # 실제 연결 준비
 
-이 문서는 4단계의 실행 순서입니다. 현재는 3단계 설계 결정만 완료했으며 앱이나 DB를 설치하지 않았습니다.
+4단계의 Vercel·Neon 연결, 초기 migration과 앱 구현을 완료했습니다. 아래 상태와 연결 순서는 새 개발 환경을 준비할 때도 참고합니다.
 
 ## 2026-10-26 확인한 상태
 
@@ -8,11 +8,14 @@
 | --- | --- |
 | GitHub 소스 | jkimsvsd-code/project-apprenticeship-04, main push 완료 |
 | Vercel 연결 계정의 팀 | jkimsvsd-code 확인 |
-| 이 프로젝트 이름의 Vercel 프로젝트 | 해당 팀의 검색 결과 없음 |
-| 로컬 .vercel/project.json | 없음 |
-| Vercel CLI | 현재 셸 PATH에서 확인되지 않음 |
-| 이 앱용 Neon DB·DATABASE_URL | 생성·연결·검증 미실행 |
-| 앱 패키지·마이그레이션·개발 서버 | 미설치·미실행 |
+| Vercel 프로젝트 | project-apprenticeship-04, Next.js·Node.js 24, GitHub 연결 완료; Functions는 vercel.json에서 sin1 지정 |
+| 로컬 .vercel/project.json | 연결 완료, Git 제외 |
+| Vercel CLI | 65.2.0을 임시 도구 경로에서 사용, 로그인 완료 |
+| Neon DB | t04-development와 t04-production, 무료 플랜·sin1, 환경별 분리 |
+| 앱 runtime 변수 | APP_DATABASE_URL, 개발·프리뷰·운영 등록 완료 |
+| 관리용 변수 | 통합의 DATABASE_URL_UNPOOLED, 값 비공개 |
+| 마이그레이션 | 001_readings.sql, 두 환경 적용 완료 |
+| 앱·개발 서버 | 설치·로컬 조회/저장/재접속 확인 완료 |
 
 위 내용은 이 앱의 연결 상태이며 계정에 존재하는 모든 외부 자원을 전수 조사했다는 의미는 아닙니다.
 
@@ -31,9 +34,10 @@
 
 ## 환경변수 계획
 
-- DATABASE_URL: 일반 앱 서버의 개발/운영 DB 연결. 브라우저 공개 금지.
-- DATABASE_MIGRATION_URL: 권한 분리가 필요한 경우 migration 전용 연결. 실제 제공 변수명과 권한을 확인한 뒤 확정.
+- APP_DATABASE_URL: 앱 전용 역할의 연결. 앱이 읽는 유일한 DB 변수이며 브라우저 공개 금지.
+- DATABASE_URL_UNPOOLED: 통합이 제공하는 관리 연결. 로컬 migration·역할 준비에만 사용.
+- 통합의 DATABASE_URL·PG*·POSTGRES_*도 존재하지만 일반 앱 코드에서는 사용하지 않습니다.
 
-아직 가짜 연결 문자열이나 빈 비밀값 파일을 만들지 않았습니다. 통합이 제공하는 실제 변수명을 확인해 .env.example에는 이름과 설명만 작성합니다. .env.local은 Git 제외 대상입니다.
+`.env.example`에는 필요한 이름과 설명만 있습니다. 실제 값은 Git 제외된 환경 파일과 Vercel에 보관합니다. Development의 앱 변수는 로컬 env pull이 가능한 Config, Preview/Production의 앱 변수는 Secret으로 등록했습니다. DB 통합의 관리 연결과 앱 runtime 연결을 혼동하지 않습니다.
 
-현재 실행 가능한 명령은 기존 공식 자산 검사뿐입니다: `node scripts/verify-task-assets.mjs`. 앱의 install/dev/test/build 명령은 구현·실행 확인 후 README에 추가합니다.
+실행 가능한 install/dev/test/build 및 DB 명령은 [README](../README.md)에 있습니다. Neon DB 생성은 성공했으나 CLI의 부가 Neon 스킬 설치는 실패했습니다. 중복 DB를 생성하지 않고 공식 통합 가이드와 설치된 driver 문서로 구현했습니다. 추후 부가 스킬을 설치할 때 DB 설치 명령을 다시 실행하지 않습니다.

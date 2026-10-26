@@ -1,6 +1,6 @@
 # 검증 계획
 
-공식 자산 무결성·참조 adapter와 원천 사전 조회는 확인했습니다. 아래 제품 자동 시험·공개 화면·실제 이틀 검증은 아직 미실행입니다. [공식 자산 보고서](../evidence/synthetic/asset-verification.json)와 [원천 사전 조회](../evidence/source-selection/README.md)를 제품 통과 결과와 구분합니다.
+공식 자산·참조 adapter, 원천 사전 조회에 더해 4단계 기본 제품 흐름을 확인했습니다. [구현 검증](../evidence/implementation/stage4.json)은 단위 12개·개발 DB 통합 4개와 로컬 브라우저의 실제 조회·저장·재접속을 다룹니다. 아래 계획 중 공식 fixture의 앱 재생·변화량·최종 공개·실제 이틀 검증은 아직 미완료입니다. [공식 자산 보고서](../evidence/synthetic/asset-verification.json)는 제품 판정과 구분합니다.
 
 ## 공식 자산 확인
 

@@ -122,7 +122,7 @@ console.log(JSON.stringify({
   reference_sequences: { normal: 1, failure: 5, recovery: 5 },
   result: 'pass',
   scope: 'official_asset_integrity_and_reference_adapter_only',
-  product_implemented: false,
+  product_implementation_checked: false,
   product_criteria_evaluated: false,
   real_day_receipts_created: 0,
 }, null, 2));

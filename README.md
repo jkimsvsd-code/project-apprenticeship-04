@@ -2,7 +2,7 @@
 
 외부 데이터 조회가 실패해도 마지막 정상값을 보존하고, 값의 출처·시각·실패 이유를 설명하는 과제 4 프로젝트입니다.
 
-현재는 **3단계: 기술 스택·영속 저장 방식 결정을 마친 상태**입니다. Next.js·TypeScript·Node.js 24, Neon Postgres, Vercel을 사용하기로 했습니다. 원천은 Open-Meteo의 서울 고정 지점 기온입니다. 실제 클라우드 연결·앱 구현은 4단계입니다.
+현재는 **4단계: 실제 조회 → 정규화 → 영속 저장 → 기본 화면 구현**까지 완료했습니다. Next.js 16.4.3·React 19.3.1·TypeScript·Node.js 24와 Neon Postgres를 사용합니다. 원천은 Open-Meteo의 서울 고정 지점 모델 기반 기온입니다. 합성 재생 패널·변화량 UI·실제 이틀 영수증 검증은 후속 단계입니다.
 
 ## 구현 범위
 
@@ -17,10 +17,17 @@
 project-apprenticeship-04/
 ├── README.md
 ├── CONTRIBUTING.md           # 단계별 검증·커밋 원칙
+├── AGENTS.md                 # 설치 버전의 Next.js 문서 확인 지침
 ├── .gitignore
+├── .env.example              # 비밀값 없는 서버 변수 이름
+├── package.json
+├── package-lock.json
+├── db/migrations/            # 버전별 Postgres 스키마
 ├── config/
 │   └── live-source.json      # 고정 공개 원천·단위·필드 매핑
 ├── scripts/
+│   ├── migrate.mjs           # 버전·해시를 기록하는 DB migration
+│   ├── setup-runtime-role.mjs # 삭제 권한 없는 앱 역할 준비
 │   └── verify-task-assets.mjs # 공식 해시·참조 상태 전이 검사
 ├── docs/
 │   ├── requirements.md       # 과제 기준과 승인된 UX 범위
@@ -34,6 +41,7 @@ project-apprenticeship-04/
 │   └── roadmap.md            # 구현 순서와 후속 확장
 ├── src/
 │   ├── README.md
+│   ├── app/                  # 페이지·레이아웃·조회 API 진입점
 │   ├── board/                # 값·출처·시각·상태·재시도 UI
 │   ├── history/              # KST 일별 기록·변화량·계산 상세
 │   ├── simulation/           # 합성 실패·복구 재생 및 격리 상태
@@ -52,10 +60,41 @@ project-apprenticeship-04/
     ├── README.md
     ├── real/                 # 공개 원천의 실제 이틀 검증 증거
     ├── source-selection/     # 원천 사전 조회; 실제 이틀 영수증 아님
+    ├── implementation/       # 기본 화면·개발 DB 종단 검증
     └── synthetic/            # 공식 해시·참조 adapter 검증 결과
 ```
 
-빈 구현·시험·실제 증거 폴더는 `.gitkeep`으로 보존합니다. 공식 자산과 원천 사전 조회 결과는 포함했으며 실제 이틀의 플랫폼 봉인 영수증은 아직 없습니다.
+아직 구현하지 않은 폴더는 `.gitkeep`으로 보존합니다. 공식 자산·원천 사전 조회·기본 기능 검증 자료를 포함했으며 실제 이틀의 플랫폼 봉인 영수증은 아직 없습니다.
+
+## 실행
+
+Node.js 24와 npm이 필요합니다. 먼저 [실제 연결 준비](docs/setup.md)에 따라 본인 Vercel 프로젝트와 실제 Neon 개발 DB 환경변수를 준비합니다. 비밀값을 채운 파일을 Git에 추가하지 않습니다.
+
+```bash
+nvm use
+npm ci
+npm run db:migrate
+# 새 DB를 처음 준비하는 경우에만 앱 전용 역할을 생성합니다.
+node scripts/setup-runtime-role.mjs .env.local
+npm run dev
+```
+
+`http://127.0.0.1:3000`에서 '첫 기온 불러오기' 또는 '지금 기온 새로고침'을 누릅니다. 성공한 값·단위·출처·두 시각·KST 시간대와 일별 저장값을 확인할 수 있습니다. DB나 원천에 연결되지 않으면 원인을 안내하며 가짜 값으로 대체하지 않습니다.
+
+앱 서버에는 `APP_DATABASE_URL`, 로컬 migration에는 `DATABASE_URL_UNPOOLED`가 필요합니다. 앱 전용 역할은 삭제 권한이 없습니다. 최초 역할 생성 후에는 `APP_DATABASE_URL`도 해당 Vercel 환경에 등록합니다. 구체적인 권한과 환경 분리는 [DB 안내](db/README.md)를 확인합니다.
+
+## 검사
+
+```bash
+npm run typecheck
+npm run lint
+npm test
+npm run test:db
+npm run verify:assets
+npm run build
+```
+
+`test:db`는 실제 개발 DB에 합성 시험 신호만 생성·정리합니다. 운영 DB를 사용하지 않습니다. 현재 단위 12개·개발 DB 통합 4개를 확인했으며, 공식 fixture 앱 재생과 Playwright 자동 화면 시험은 아직 후속 작업입니다. [4단계 검증 결과](evidence/implementation/stage4.json)에 검사 범위를 기록했습니다.
 
 ## 문서 안내
 
@@ -82,6 +121,6 @@ node scripts/verify-task-assets.mjs
 
 ## 실행 및 공개 상태
 
-실제 Vercel 프로젝트·Neon DB와 서버 환경변수를 연결한 뒤 앱을 설치·구현합니다. 설치 버전과 lockfile, 확인된 실행·시험·배포 명령은 4단계부터 추가합니다. 현재 앱 실행 명령과 공개 심사 URL은 없습니다. [공개 소스 저장소](https://github.com/jkimsvsd-code/project-apprenticeship-04)는 연결되어 있습니다.
+Vercel 프로젝트와 GitHub가 연결되어 있으며 Development/Preview와 Production은 서로 다른 Neon DB를 사용합니다. 기본 화면의 로컬 종단 흐름은 확인했습니다. 공개 배포의 최종 무인증 점검과 제출용 이틀 검증은 7단계에 수행합니다. [공개 소스 저장소](https://github.com/jkimsvsd-code/project-apprenticeship-04)는 연결되어 있습니다.
 
 Open-Meteo 데이터는 출처와 CC BY 4.0을 표시하며 무료 API는 비상업 교육용으로 사용합니다. 공식 과제 자산은 원본·출처·해시를 보존합니다. 과제 자산에는 별도의 라이선스 파일이 없어 추가 권리를 임의로 부여하지 않습니다. 프로젝트 자체 라이선스는 아직 정하지 않았습니다.

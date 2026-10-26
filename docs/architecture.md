@@ -1,12 +1,12 @@
 # 구현 구조와 데이터 원칙
 
-이 문서는 구현 방향입니다. 원천은 [Open-Meteo의 서울 고정 지점 기온](data-source.md), 공통 데이터·재생 계약은 [공개 계약 v2](task-contract.md)입니다. 기술은 Next.js App Router·TypeScript·Node.js 24, 공유 저장소는 Neon Postgres, 배포는 Vercel로 정했습니다. [선택 근거와 저장 모델](stack-and-storage.md), [실제 연결 준비](setup.md)를 함께 확인합니다. 서비스 연결과 앱 구현은 아직 미완료입니다.
+원천은 [Open-Meteo의 서울 고정 지점 기온](data-source.md), 공통 데이터·재생 계약은 [공개 계약 v2](task-contract.md)입니다. 기술은 Next.js App Router·TypeScript·Node.js 24, 공유 저장소는 Neon Postgres, 배포는 Vercel입니다. 4단계에서 서비스 연결과 기본 조회·저장·화면 흐름을 구현했습니다. [저장 모델](stack-and-storage.md), [연결 상태](setup.md)를 함께 확인합니다. 합성 재생·변화량·영수증 검증은 후속 단계입니다.
 
 ## 모듈 책임
 
 | 위치 | 책임 |
 | --- | --- |
-| src/app (4단계에 추가) | Next.js 화면·Route Handler 진입점; 업무 규칙은 기존 모듈에 위임 |
+| src/app | Next.js 화면·Route Handler 진입점; 업무 규칙은 기존 모듈에 위임 |
 | src/board | 최신 값·출처·두 시각·오래된 값·오류 안내·재시도·첫 방문 UI |
 | src/history | 일별 기록 표시, 비교 가능 여부 판단, 변화량과 계산 근거 |
 | src/simulation | 공식 합성 입력 재생, 시험 초기화·상태 표시, 실제 저장소와 격리 |
@@ -61,4 +61,4 @@ UI는 초기 데이터 없음, 조회 중, 정상, 마지막 정상값이 있는
 
 ## 아직 확정하지 않은 사항
 
-실제 설치 버전, SQL migration, Vercel 프로젝트·Neon 자원 연결, 배포 지역·플랜, 프로젝트 라이선스는 아직 미정입니다. 플랫폼 t04_day 영수증 발급 절차도 실제 검증 단계에서 확인해야 합니다. 원천 사전 조회를 앱의 실제 이틀 검증 완료나 플랫폼 영수증으로 표시하지 않습니다.
+프로젝트 라이선스와 플랫폼 t04_day 영수증 발급 절차는 아직 확정하지 않았습니다. 배포 환경의 최종 공개 접근 검증은 7단계입니다. 원천 사전 조회나 개발 DB 검증을 실제 이틀 검증 완료나 플랫폼 영수증으로 표시하지 않습니다.
