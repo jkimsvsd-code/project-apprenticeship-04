@@ -1,0 +1,107 @@
+{
+  "scope": "stage7B_actual_two_KST_dates_app_values_only",
+  "verified_at": "2026-10-26T15:55:44.228Z",
+  "code_baseline_commit": "52f08304fcf0fd7e5a55994c208573272e0df89a",
+  "documentation_baseline_commit": "1ba5aa95f754392da5700dc48d1c03eccbdffd9b",
+  "operation": "Read-only public API and browser; no source refresh or database writes performed during this verification",
+  "actual_record_dates": [
+    "2026-10-26",
+    "2026-10-27"
+  ],
+  "selected_snapshots": [
+    {
+      "snapshot_id": "6f2d9580-3c2f-478a-bdda-814d5030c4c9",
+      "url": "https://project-apprenticeship-04.vercel.app/review/6f2d9580-3c2f-478a-bdda-814d5030c4c9",
+      "reading": {
+        "unit": "°C",
+        "signal_id": "seoul-temperature-2m",
+        "fetched_at": "2026-10-26T12:11:07.872Z",
+        "source_url": "https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current=temperature_2m&temperature_unit=celsius&timeformat=unixtime&timezone=Asia%2FSeoul",
+        "record_date": "2026-10-26",
+        "source_name": "Open-Meteo",
+        "source_time": "2026-10-26T12:00:00.000Z",
+        "record_timezone": "Asia/Seoul",
+        "normalized_value": 14.6
+      }
+    },
+    {
+      "snapshot_id": "ea6a373d-4983-4115-90d7-2faaec9399f7",
+      "url": "https://project-apprenticeship-04.vercel.app/review/ea6a373d-4983-4115-90d7-2faaec9399f7",
+      "reading": {
+        "unit": "°C",
+        "signal_id": "seoul-temperature-2m",
+        "fetched_at": "2026-10-26T15:46:49.214Z",
+        "source_url": "https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current=temperature_2m&temperature_unit=celsius&timeformat=unixtime&timezone=Asia%2FSeoul",
+        "record_date": "2026-10-27",
+        "source_name": "Open-Meteo",
+        "source_time": "2026-10-26T15:45:00.000Z",
+        "record_timezone": "Asia/Seoul",
+        "normalized_value": 12.8
+      }
+    }
+  ],
+  "comparison": {
+    "before_date": "2026-10-26",
+    "after_date": "2026-10-27",
+    "days": 1,
+    "signed": -1.8,
+    "magnitude": 1.8,
+    "direction": "decrease",
+    "unit": "°C",
+    "formula": "12.8 - 14.6 = -1.8 °C"
+  },
+  "checks": {
+    "raw_vs_normalized": "pass",
+    "api_daily_vs_archive_vs_screen": "pass",
+    "source_time_mapping": "pass",
+    "receipt_correspondence_fields": "pass (mapping only, no official receipts)",
+    "fetched_at_KST_dates": "pass",
+    "main_and_fixed_comparison": "pass",
+    "browser_console_errors": 0,
+    "anonymous_http": [
+      {
+        "url": "https://project-apprenticeship-04.vercel.app/",
+        "http_status": 200,
+        "authentication_sent": false
+      },
+      {
+        "url": "https://project-apprenticeship-04.vercel.app/review/6f2d9580-3c2f-478a-bdda-814d5030c4c9",
+        "http_status": 200,
+        "authentication_sent": false
+      },
+      {
+        "url": "https://project-apprenticeship-04.vercel.app/review/ea6a373d-4983-4115-90d7-2faaec9399f7",
+        "http_status": 200,
+        "authentication_sent": false
+      },
+      {
+        "url": "https://project-apprenticeship-04.vercel.app/review/6f2d9580-3c2f-478a-bdda-814d5030c4c9?compare=ea6a373d-4983-4115-90d7-2faaec9399f7",
+        "http_status": 200,
+        "authentication_sent": false
+      }
+    ]
+  },
+  "user_confirmation": {
+    "actual_two_dates_recorded": true,
+    "official_receipts_issued": false,
+    "basis": "User confirmed in this conversation on 2026-10-27 KST"
+  },
+  "official_t04_day_receipts": 0,
+  "official_receipt_payload_verified": false,
+  "official_receipt_server_created_at_dates_verified": false,
+  "app_two_date_value_check_complete": true,
+  "stage7B_complete": false,
+  "platform_submission_performed": false,
+  "limitations": [
+    "Two actual KST calendar dates, not a 48-hour continuous monitoring claim",
+    "Open-Meteo model-based current temperature, not station observations or daily mean",
+    "Daily representatives can change on later successful queries; selected UUID archive links remain fixed",
+    "Official issuance procedure, exactly two sealed t04_day receipts and their server_created_at/payload comparison are pending"
+  ],
+  "evidence": [
+    "board-response.json",
+    "two-day-browser.json",
+    "two-day-main-browser.txt",
+    "two-day-comparison.png"
+  ]
+}

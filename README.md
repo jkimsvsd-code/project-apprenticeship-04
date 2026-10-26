@@ -2,7 +2,7 @@
 
 외부 데이터 조회가 실패해도 마지막 정상값을 보존하고, 값의 출처·시각·실패 이유를 설명하는 과제 4 프로젝트입니다.
 
-현재는 **8A: 제출문 초안 작성**까지 완료했습니다. Next.js 16.4.3·React 19.3.1·TypeScript·Node.js 24와 Neon Postgres를 사용합니다. 원천은 Open-Meteo의 서울 고정 지점 모델 기반 기온입니다. 실제 기록이 한 날짜뿐이면 비교 부족을 안내하며, 실제 이틀 영수증 검증은 마지막에 진행합니다. [제출문 초안](docs/submission.md)에 확인법 4줄·판단 기록 3줄·공개 주소와 미완료 항목을 정리했습니다. 7B 준비 기능인 [고정 보관본·대조 화면](docs/preserved-readings.md)을 구현했습니다. 공식 영수증 확보와 실제 이틀 대조는 남아 있습니다.
+현재는 **7B 중 실제 두 날짜의 앱 기록 대조까지 완료**했습니다(2026-10-27 KST). 10월 26일 14.6°C → 27일 12.8°C, **1.8°C 감소**이며 원자료·저장값·고정 보관 화면·계산식이 일치합니다. [실제 두 날짜 증거](evidence/real/README.md)와 [제출문 초안](docs/submission.md)에 반영했습니다. 공식 영수증은 사용자 확인 기준 0건으로, 영수증 발급·대조와 최종 확정은 남아 있습니다. Next.js 16.4.3·React 19.3.1·TypeScript·Node.js 24·Neon Postgres를 사용하며 원천은 Open-Meteo의 서울 고정 지점 모델 기반 기온입니다. [고정 보관본·대조 화면](docs/preserved-readings.md)의 링크는 이후 재조회에도 유지됩니다.
 
 [기본 정보판 열기](https://project-apprenticeship-04.vercel.app) · [실패·복구 패널 열기](https://project-apprenticeship-04.vercel.app/#simulation) · 최종 제출 전 기능을 구현 중인 화면입니다.
 
@@ -72,7 +72,7 @@ project-apprenticeship-04/
     └── security/             # 무인증 접근·비밀값·의존성 검사
 ```
 
-아직 구현하지 않은 폴더는 `.gitkeep`으로 보존합니다. 공식 자산·원천 사전 조회·기본 기능 검증 자료를 포함했으며 실제 이틀의 플랫폼 봉인 영수증은 아직 없습니다.
+아직 구현하지 않은 폴더는 `.gitkeep`으로 보존합니다. 공식 자산·원천 사전 조회·기능 검증과 실제 두 날짜의 앱 기록 대조 자료를 포함했습니다. 플랫폼 봉인 영수증은 아직 없습니다.
 
 ## 실행
 
@@ -117,6 +117,7 @@ npm run build
 - [합성 실패·복구 재생 안내](docs/simulation.md)
 - [제출문 초안](docs/submission.md)
 - [고정 기록을 이용한 실제 이틀 확인](docs/preserved-readings.md)
+- [실제 두 날짜 값·원자료·화면 대조 결과](evidence/real/README.md)
 - [구현 순서와 확장 계획](docs/roadmap.md)
 - [단계별 작업 및 커밋 원칙](CONTRIBUTING.md)
 - [데이터 원천과 이용 조건](docs/data-source.md)
@@ -136,7 +137,7 @@ node scripts/verify-task-assets.mjs
 
 ## 실행 및 공개 상태
 
-Vercel 프로젝트와 GitHub가 연결되어 있으며 Development/Preview와 Production은 서로 다른 Neon DB를 사용합니다. 기본 화면의 로컬 종단 흐름은 확인했습니다. 공개 배포의 최종 무인증 점검과 제출용 이틀 검증은 7단계에 수행합니다. [공개 소스 저장소](https://github.com/jkimsvsd-code/project-apprenticeship-04)는 연결되어 있습니다.
+Vercel 프로젝트와 GitHub가 연결되어 있으며 Development/Preview와 Production은 서로 다른 Neon DB를 사용합니다. 기본 종단 흐름·7A 공개 접근 점검과 7B의 실제 두 날짜 앱 기록 대조를 확인했습니다. 공식 영수증 대조와 제출 직전 최종 무인증 재점검은 남아 있습니다. [공개 소스 저장소](https://github.com/jkimsvsd-code/project-apprenticeship-04)는 연결되어 있습니다.
 
 4단계 코드의 Vercel 빌드가 Ready이며, 배포 화면·읽기 API의 무로그인 HTTP 200과 운영 첫 조회·재접속 보존을 확인했습니다. [운영 검증 자료](evidence/implementation/production-first-reading.json)는 실제 한 날짜의 기록입니다. 플랫폼 봉인 영수증은 0건이므로 실제 이틀 검증 완료가 아닙니다.
 
@@ -145,3 +146,5 @@ Vercel 프로젝트와 GitHub가 연결되어 있으며 Development/Preview와 P
 Open-Meteo 데이터는 출처와 CC BY 4.0을 표시하며 무료 API는 비상업 교육용으로 사용합니다. 공식 과제 자산은 원본·출처·해시를 보존합니다. 과제 자산에는 별도의 라이선스 파일이 없어 추가 권리를 임의로 부여하지 않습니다. 프로젝트 자체 라이선스는 아직 정하지 않았습니다.
 
 7A에서 결과물·커밋 고정 소스의 쿠키 없는 HTTP 접근과 사용자의 새 시크릿 창 접근을 확인했습니다. 실제 운영 조회·공통 재시도 제한, API 입력 거절, 비공개 파일 차단, Git 기록·빌드·공개 응답의 비밀값 검사와 npm 전체 의존성 검사도 통과했습니다. [7A 보고서](evidence/implementation/stage7a.json)와 [검사 범위](docs/security-review.md)를 확인하세요.
+
+2026-10-27에는 실제 운영의 두 KST 날짜 값·원자료·보관본·화면·변화량과 공개 주소 네 곳의 무인증 HTTP 200을 확인했습니다. [고정된 비교 화면](https://project-apprenticeship-04.vercel.app/review/6f2d9580-3c2f-478a-bdda-814d5030c4c9?compare=ea6a373d-4983-4115-90d7-2faaec9399f7)을 열 수 있습니다. 공식 영수증은 0건이며 앱의 보관 시각을 플랫폼의 영수증 발급 시각으로 대신하지 않습니다.

@@ -1,6 +1,6 @@
 # 검증 계획
 
-공식 자산·참조 adapter, 실제 조회·저장·합성 재생에 더해 [6단계 검증](../evidence/implementation/stage6.json)에서 단위 63개·개발 DB 통합 6개·빌드, 브라우저의 실제 조회/대기·키보드 조작·320/390px·공통 계산 상세를 확인했습니다. [5단계 검증](../evidence/implementation/stage5.json)은 단위 42개·개발 DB 통합 4개, 앱 상태와 참조 adapter의 전체 상태 비교, 실제 브라우저의 실패 5종·복구·초기화·실제 기록 불변을 다룹니다. [4단계 검증](../evidence/implementation/stage4.json)은 기본 조회·저장·재접속 자료입니다. 실제 변화량 UI와 UX U1~U7은 구현했으며, 현재 실제 한 날짜의 기록 부족 안내와 격리된 합성 두 날짜의 계산 표시를 검증했습니다. [7A 공개 접근·보안 점검](../evidence/implementation/stage7a.json)은 완료했습니다. 쿠키 없는 요청과 사용자 시크릿 창 확인을 분리해 기록했습니다. 실제 이틀과 영수증 대조는 아직 미완료입니다. 사용자의 승인에 따라 공개 점검과 [8A 제출문 초안](submission.md)을 먼저 완료했습니다. 확인법 4줄·판단 3줄과 단일 HTTPS/commit URL 형식을 검토했으며 실제 이틀 대조와 최종 채점은 남아 있습니다. [공식 자산 보고서](../evidence/synthetic/asset-verification.json)는 제품 판정과 구분합니다.
+2026-10-27 KST 현재 [실제 두 날짜 앱 기록 대조](../evidence/real/README.md)를 완료했습니다. 운영의 10월 26일 14.6°C·27일 12.8°C는 원자료·저장값·고정 화면과 일치하며 변화량은 1.8°C 감소입니다. 공식 영수증은 사용자 확인 기준 0건으로 발급·대조가 남아 있습니다. 기존 [6단계 검증](../evidence/implementation/stage6.json)은 비교·UX, [5단계 검증](../evidence/implementation/stage5.json)은 합성 실패·복구, [4단계 검증](../evidence/implementation/stage4.json)은 기본 종단 흐름을 다룹니다. [7A 공개 접근·보안 점검](../evidence/implementation/stage7a.json)과 [8A 제출문 초안](submission.md)은 완료했으며 최종 제출·채점은 남아 있습니다. [공식 자산 보고서](../evidence/synthetic/asset-verification.json)는 제품 판정과 구분합니다.
 
 ## 공식 자산 확인
 
@@ -31,6 +31,8 @@
 세부 조작과 fixture 매핑은 [합성 재생 안내](simulation.md)를 따릅니다. 앱 재생 시험은 fixture의 `expected`를 입력에서 제거하거나 변조해도 결과가 동일한지 확인하며, 실제 상태를 공식 참조 adapter와 대조합니다. 세부 fixture·입력 필드·오류 코드는 [확보한 계약](task-contract.md)에 따라 연결합니다. 원본 수정 시 검증 스크립트가 실패하는지도 임시 사본에서 확인합니다.
 
 ## 실제 이틀 검증
+
+앱 값 대조 결과: **완료(2026-10-27)**. [검증 보고서](../evidence/real/two-day-verification.json)에서 원자료의 기온·단위·Unix 원천 시각, API 일별값·고정 보관본·화면의 정규화 필드, 실제 조회 시각의 KST 날짜를 대조했습니다. 메인 정보판과 두 UUID 고정 비교의 날짜·1일 간격·`12.8 − 14.6 = −1.8°C` 계산도 일치합니다. 익명 HTTP 네 주소 200, 비교 화면 console 오류 0건입니다. 실제 조회나 DB 쓰기는 수행하지 않았습니다. 아래 1~3은 완료했으며 4~5의 공식 영수증 검증은 남아 있습니다. 전체 보안·모바일·합성 시험을 이번 문서 갱신에서 재실행한 것은 아닙니다.
 
 1. 실제 첫날: 공개 원천 조회 성공 후 URL·관측 시각·조회 시각·KST 날짜·값·단위와 원자료를 보존합니다.
 2. 다른 실제 KST 날짜: 같은 원천을 조회하여 두 번째 일별 기록을 확보합니다.

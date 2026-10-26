@@ -1,0 +1,88 @@
+{
+  "verified_at": "2026-10-26T15:54:32.406Z",
+  "url": "https://project-apprenticeship-04.vercel.app/review/6f2d9580-3c2f-478a-bdda-814d5030c4c9?compare=ea6a373d-4983-4115-90d7-2faaec9399f7",
+  "snapshot_values": [
+    "14.6 °C",
+    "12.8 °C"
+  ],
+  "receipt_fields": [
+    {
+      "source_url": "https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current=temperature_2m&temperature_unit=celsius&timeformat=unixtime&timezone=Asia%2FSeoul",
+      "source_observed_at": "2026-10-26T12:00:00.000Z",
+      "normalized_value": 14.6,
+      "unit": "°C"
+    },
+    {
+      "source_url": "https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current=temperature_2m&temperature_unit=celsius&timeformat=unixtime&timezone=Asia%2FSeoul",
+      "source_observed_at": "2026-10-26T15:45:00.000Z",
+      "normalized_value": 12.8,
+      "unit": "°C"
+    }
+  ],
+  "readings": [
+    {
+      "unit": "°C",
+      "signal_id": "seoul-temperature-2m",
+      "fetched_at": "2026-10-26T12:11:07.872Z",
+      "source_url": "https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current=temperature_2m&temperature_unit=celsius&timeformat=unixtime&timezone=Asia%2FSeoul",
+      "record_date": "2026-10-26",
+      "source_name": "Open-Meteo",
+      "source_time": "2026-10-26T12:00:00.000Z",
+      "record_timezone": "Asia/Seoul",
+      "normalized_value": 14.6
+    },
+    {
+      "unit": "°C",
+      "signal_id": "seoul-temperature-2m",
+      "fetched_at": "2026-10-26T15:46:49.214Z",
+      "source_url": "https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current=temperature_2m&temperature_unit=celsius&timeformat=unixtime&timezone=Asia%2FSeoul",
+      "record_date": "2026-10-27",
+      "source_name": "Open-Meteo",
+      "source_time": "2026-10-26T15:45:00.000Z",
+      "record_timezone": "Asia/Seoul",
+      "normalized_value": 12.8
+    }
+  ],
+  "raw_payloads": [
+    {
+      "current": {
+        "time": 1793016000,
+        "interval": 900,
+        "temperature_2m": 14.6
+      },
+      "latitude": 37.55,
+      "timezone": "Asia/Seoul",
+      "elevation": 34,
+      "longitude": 127,
+      "current_units": {
+        "time": "unixtime",
+        "interval": "seconds",
+        "temperature_2m": "°C"
+      },
+      "generationtime_ms": 0.01895427703857422,
+      "utc_offset_seconds": 32400,
+      "timezone_abbreviation": "GMT+9"
+    },
+    {
+      "current": {
+        "time": 1793029500,
+        "interval": 900,
+        "temperature_2m": 12.8
+      },
+      "latitude": 37.55,
+      "timezone": "Asia/Seoul",
+      "elevation": 34,
+      "longitude": 127,
+      "current_units": {
+        "time": "unixtime",
+        "interval": "seconds",
+        "temperature_2m": "°C"
+      },
+      "generationtime_ms": 0.034928321838378906,
+      "utc_offset_seconds": 32400,
+      "timezone_abbreviation": "GMT+9"
+    }
+  ],
+  "visible_text": "← 실제 기온 정보판\n고정 기록 목록\n\nPRESERVED READING · ASIA/SEOUL\n\n영수증 대조용 고정 기록\n\n이 주소의 값·원자료·시각은 이후 새로고침과 같은 날짜 재조회에도 바뀌지 않습니다. 영수증에 사용할 보관본은 주소창의 이 링크를 보관해 주세요.\n\n앱의 실제 조회 보관본 · 플랫폼 영수증 미연결. 고정 보관 시각은 플랫폼의 영수증 발급 시각이 아닙니다. 실제 이틀 검증은 공식 영수증 2건과 별도로 대조해야 합니다.\n\n저장된 두 날짜 비교\n\n↘ 1.8 °C 감소\n\n2026-10-26 → 2026-10-27 · KST · 1일 간격\n\n변화량 계산 상세\n이전 날짜 저장값\n2026-10-26 · 14.6 °C\n나중 날짜 저장값\n2026-10-27 · 12.8 °C\n\n12.8 − (14.6) = -1.8 °C\n\n나중 날짜의 마지막 성공값 − 이전 날짜의 마지막 성공값입니다. 비율은 계산하지 않습니다.\n\n선택한 고정 기록 · 2026-10-26 KST\n\n14.6 °C\n\n출처\nOpen-Meteo · 모델 기반 기온\n원천 기준 시각\n2026. 10. 26. 21:00:00 KST\n실제 조회 시각\n2026. 10. 26. 21:11:07 KST\n고정 보관 시각\n2026. 10. 26. 21:11:07 KST\n기록 시간대\nAsia/Seoul · UTC+09:00\n영수증 대조 항목\n\n아래 값은 플랫폼의 영수증 항목과 대조할 자료입니다. 원천 시각은 UTC ISO 형식이며 실제 조회 시각과 구분합니다.\n\n{\n  \"source_url\": \"https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current=temperature_2m&temperature_unit=celsius&timeformat=unixtime&timezone=Asia%2FSeoul\",\n  \"source_observed_at\": \"2026-10-26T12:00:00.000Z\",\n  \"normalized_value\": 14.6,\n  \"unit\": \"°C\"\n}\n선택한 고정 기록의 원자료·저장값 확인\n보관한 원자료\n{\n  \"current\": {\n    \"time\": 1793016000,\n    \"interval\": 900,\n    \"temperature_2m\": 14.6\n  },\n  \"latitude\": 37.55,\n  \"timezone\": \"Asia/Seoul\",\n  \"elevation\": 34,\n  \"longitude\": 127,\n  \"current_units\": {\n    \"time\": \"unixtime\",\n    \"interval\": \"seconds\",\n    \"temperature_2m\": \"°C\"\n  },\n  \"generationtime_ms\": 0.01895427703857422,\n  \"utc_offset_seconds\": 32400,\n  \"timezone_abbreviation\": \"GMT+9\"\n}\n보관한 정규화 값\n{\n  \"unit\": \"°C\",\n  \"signal_id\": \"seoul-temperature-2m\",\n  \"fetched_at\": \"2026-10-26T12:11:07.872Z\",\n  \"source_url\": \"https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current=temperature_2m&temperature_unit=celsius&timeformat=unixtime&timezone=Asia%2FSeoul\",\n  \"record_date\": \"2026-10-26\",\n  \"source_name\": \"Open-Meteo\",\n  \"source_time\": \"2026-10-26T12:00:00.000Z\",\n  \"record_timezone\": \"Asia/Seoul\",\n  \"normalized_value\": 14.6\n}\n비교할 고정 기록 · 2026-10-27 KST\n\n12.8 °C\n\n출처\nOpen-Meteo · 모델 기반 기온\n원천 기준 시각\n2026. 10. 27. 00:45:00 KST\n실제 조회 시각\n2026. 10. 27. 00:46:49 KST\n고정 보관 시각\n2026. 10. 27. 00:46:49 KST\n기록 시간대\nAsia/Seoul · UTC+09:00\n영수증 대조 항목\n\n아래 값은 플랫폼의 영수증 항목과 대조할 자료입니다. 원천 시각은 UTC ISO 형식이며 실제 조회 시각과 구분합니다.\n\n{\n  \"source_url\": \"https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current=temperature_2m&temperature_unit=celsius&timeformat=unixtime&timezone=Asia%2FSeoul\",\n  \"source_observed_at\": \"2026-10-26T15:45:00.000Z\",\n  \"normalized_value\": 12.8,\n  \"unit\": \"°C\"\n}\n비교할 고정 기록의 원자료·저장값 확인\n보관한 원자료\n{\n  \"current\": {\n    \"time\": 1793029500,\n    \"interval\": 900,\n    \"temperature_2m\": 12.8\n  },\n  \"latitude\": 37.55,\n  \"timezone\": \"Asia/Seoul\",\n  \"elevation\": 34,\n  \"longitude\": 127,\n  \"current_units\": {\n    \"time\": \"unixtime\",\n    \"interval\": \"seconds\",\n    \"temperature_2m\": \"°C\"\n  },\n  \"generationtime_ms\": 0.034928321838378906,\n  \"utc_offset_seconds\": 32400,\n  \"timezone_abbreviation\": \"GMT+9\"\n}\n보관한 정규화 값\n{\n  \"unit\": \"°C\",\n  \"signal_id\": \"seoul-temperature-2m\",\n  \"fetched_at\": \"2026-10-26T15:46:49.214Z\",\n  \"source_url\": \"https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current=temperature_2m&temperature_unit=celsius&timeformat=unixtime&timezone=Asia%2FSeoul\",\n  \"record_date\": \"2026-10-27\",\n  \"source_name\": \"Open-Meteo\",\n  \"source_time\": \"2026-10-26T15:45:00.000Z\",\n  \"record_timezone\": \"Asia/Seoul\",\n  \"normalized_value\": 12.8\n}\n비교할 다른 날짜의 고정 기록 주소\n\n다른 날 저장해 둔 고정 기록을 열고, 주소창의 링크를 아래에 붙여 넣으세요. 두 링크의 값으로 계산하며, 최신 기온으로 바꾸지 않습니다.\n\n두 고정 기록 비교",
+  "console_errors": []
+}
