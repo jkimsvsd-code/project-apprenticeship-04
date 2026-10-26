@@ -1,0 +1,6 @@
+{
+  "verified_at": "2026-10-26T02:21:13.364Z",
+  "environment": "development",
+  "exact_board_response_unchanged": true,
+  "comparison": "deep strict equality before and after all replay/reset actions"
+}

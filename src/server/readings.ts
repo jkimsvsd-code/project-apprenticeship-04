@@ -1,6 +1,6 @@
 import 'server-only';
 import { database } from './database';
-import { source, type Reading, type DailyReading, type BoardState, type ErrorCode } from '../shared/reading';
+import { source, validateReading, type Reading, type DailyReading, type BoardState, type ErrorCode } from '../shared/reading';
 
 export type Attempt = { number: string; startedAt: string };
 
@@ -17,6 +17,7 @@ export async function beginAttempt(signalId = source.signal_id): Promise<Attempt
 }
 
 export async function saveReading(reading: Reading, raw: unknown, attempt: Attempt): Promise<void> {
+  validateReading(reading);
   const sql = database();
   await sql.transaction([
     sql`SELECT signal_id FROM signal_state WHERE signal_id = ${reading.signal_id} FOR UPDATE`,

@@ -1,12 +1,14 @@
 # 검증 증거
 
-공식 자산·참조 adapter, 원천 사전 조회, 4단계 기본 화면·실제 개발 DB 종단 검증 자료를 수집했습니다. 제출용 실제 이틀 검증·플랫폼 봉인 영수증은 아직 없습니다.
+공식 자산·참조 adapter, 원천 사전 조회, 기본 화면·실제 개발 DB 종단 검증, 5단계 합성 재생 자료를 수집했습니다. 제출용 실제 이틀 검증·플랫폼 봉인 영수증은 아직 없습니다.
 
 ## implementation/
 
 `stage4.json`과 `stage4-board.png`는 실제 원천 → API → 개발 DB → 화면과 재접속 보존의 확인 자료입니다. Development DB에서 조회한 서울 기온 1개 날짜이며 플랫폼 t04_day 영수증이 아닙니다. 운영 DB와 분리했음을 함께 확인했습니다.
 
 `production-first-reading.json`과 `production-board.png`는 배포 후 별도로 확인한 운영 첫 실제 조회와 재접속 보존 자료입니다. 해당 코드 commit과 검증 시각을 기록했습니다. 이 역시 플랫폼 봉인 영수증이 아니며 실제 이틀 완료로 계산하지 않습니다.
+
+`stage5.json`, `stage5-failure.png`, `stage5-recovery.png`는 합성 재생의 앱 검증·화면 증거입니다. 단위 42개·실제 개발 DB 통합 4개·빌드를 확인했고, 브라우저 재생 전후 실제 읽기 API 응답이 완전히 같음을 대조했습니다. 합성 105/120pt·8월 날짜를 실제 기온·실제 이틀로 계산하지 않습니다.
 
 ## source-selection/
 
@@ -26,7 +28,7 @@
 
 ## synthetic/
 
-현재 `asset-verification.json`은 공식 package ID·버전·SHA-256 대조와 참조 adapter의 D1-A → D1-B, 실패 5종, recover-d2 검사 결과입니다. 제품 구현의 시험 결과가 아닙니다. 앱을 구현하면 해당 앱의 초기 상태·실행 입력·기대 결과·실제 결과·기록 건수도 별도 보존합니다.
+현재 `asset-verification.json`은 공식 package ID·버전·SHA-256 대조와 참조 adapter의 D1-A → D1-B, 실패 5종, recover-d2 검사 결과입니다. 제품 구현의 시험 결과가 아닙니다. `stage5-browser-replays.json`은 실제 앱 화면에서 읽은 실패 5종별 실패/복구 전체 상태입니다. `stage5-browser-extra.json`은 동일 날짜 ID 유지·다음 날짜·초기 실패·초기화 확인 결과이며, `stage5-live-isolation.json`은 개발 실제 읽기 응답의 재생 전후 완전 일치 결과입니다.
 
 ## 공개 자료 원칙
 

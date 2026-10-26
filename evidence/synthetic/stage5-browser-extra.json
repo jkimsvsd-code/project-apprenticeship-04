@@ -1,0 +1,7 @@
+{
+  "reset": "pass",
+  "same_day_record_id": "pass",
+  "next_day_rows": 2,
+  "delta": 15,
+  "initial_failure_no_value": "pass"
+}

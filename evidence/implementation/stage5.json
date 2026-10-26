@@ -1,0 +1,37 @@
+{
+  "verified_at": "2026-10-26T02:22:16.022505+00:00",
+  "scope": "stage5_isolated_official_fixture_replay",
+  "contract_version": "2.0.0",
+  "fixture_contract_version": "1.1.0",
+  "checks": {
+    "typescript": "pass",
+    "eslint": "pass",
+    "unit_tests": 42,
+    "development_database_integration_tests": 4,
+    "production_build": "pass",
+    "official_file_hashes": 17,
+    "canonical_fixture_hashes": 9,
+    "whole_state_reference_adapter_comparison": "pass; normal, five errors, recovery",
+    "expected_field_not_used": "pass; tampering does not change output",
+    "browser_five_errors": "pass; 105pt, one row, stale, matching error",
+    "browser_five_recoveries": "pass; 120pt, two rows, fresh, none",
+    "same_day_record_id": "pass",
+    "reset": "pass; only synthetic state",
+    "initial_failure": "pass; no value, zero rows",
+    "repeated_recovery": "pass; no duplicate D2 row",
+    "session_isolation": "pass; independent reducer states",
+    "actual_development_board_unchanged": "pass; exact response deep comparison",
+    "secret_scan": "pass; exact local secret values absent from repository candidates and browser build assets",
+    "environment_files_git_ignored": "pass",
+    "local_markdown_links": 49
+  },
+  "browser_state_evidence": "../synthetic/stage5-browser-replays.json",
+  "isolation_evidence": "../synthetic/stage5-live-isolation.json",
+  "sealed_t04_day_receipts": 0,
+  "actual_two_day_verification_complete": false,
+  "remaining": [
+    "real history comparison UI and remaining U1-U7 UX",
+    "full mobile/keyboard verification",
+    "final public verification and real two-day platform receipts"
+  ]
+}

@@ -2,6 +2,8 @@
 
 import { useRef, useState } from 'react';
 import { formatKst, source, type BoardState } from '../shared/reading';
+import { failureCopy } from '../shared/failures';
+import { SimulationPanel } from '../simulation/SimulationPanel';
 import styles from './Board.module.css';
 
 type Issue = 'configuration' | 'storage' | 'request' | 'network' | null;
@@ -10,13 +12,6 @@ const issues: Record<Exclude<Issue, null>, string> = {
   storage: '저장된 기록을 확인하지 못했습니다. 새 기록이 저장됐다고 표시하지 않으며, 현재 화면의 값은 유지합니다.',
   request: '이 요청은 처리할 수 없습니다. 이 화면의 새로고침 버튼을 사용해 주세요.',
   network: '화면과 서버의 연결이 끊겼습니다. 네트워크를 확인한 뒤 다시 시도해 주세요.',
-};
-const failures = {
-  timeout: '원천 응답이 늦어 조회를 멈췄습니다. 잠시 후 다시 시도해 주세요.',
-  auth: '데이터 제공자가 조회를 거절했습니다. 제공자의 접근 상태가 복구되면 다시 시도해 주세요.',
-  rate_limit: '데이터 제공자의 호출 한도에 도달했습니다. 대기 후 다시 시도해 주세요.',
-  offline: '데이터 제공자와 연결하지 못했습니다. 잠시 후 다시 시도해 주세요.',
-  schema_error: '원천 응답의 형식이 달라 새 값을 저장하지 않았습니다. 제공 형식 확인이 필요합니다.',
 };
 
 export function Board({ initialState, initialIssue }: { initialState: BoardState | null; initialIssue: Issue }) {
@@ -28,7 +23,7 @@ export function Board({ initialState, initialIssue }: { initialState: BoardState
   const reading = state?.reading;
   const stale = state?.freshness === 'stale';
   const latest = state?.records.find((record) => record.reading.record_date === reading?.record_date);
-  const sourceFailure = state?.error_code && state.error_code !== 'none' ? failures[state.error_code] : null;
+  const sourceFailure = state?.error_code && state.error_code !== 'none' ? failureCopy[state.error_code] : null;
 
   async function refresh() {
     if (inFlight.current) return;
@@ -59,6 +54,7 @@ export function Board({ initialState, initialIssue }: { initialState: BoardState
       <p className={styles.eyebrow}>SEOUL WEATHER JOURNAL</p>
       <h1 id="page-title">오늘의 기온,<br />시간까지 정확하게.</h1>
       <p className={styles.lead}>변하는 숫자에 출처와 시간을 더합니다.<br />새 값을 받지 못해도, 마지막으로 확인한 기록은 남습니다.</p>
+      <a className={styles.reviewLink} href="#simulation">실패와 복구를 합성 데이터로 확인 <span aria-hidden="true">↓</span></a>
     </section>
 
     <div className={styles.grid}>
@@ -84,7 +80,7 @@ export function Board({ initialState, initialIssue }: { initialState: BoardState
         <div aria-live="polite" aria-atomic="true">
           {notice ? <p className={styles.notice}>{notice}</p> : null}
           {issue ? <p role="alert" className={styles.error}>{issues[issue]}</p> : null}
-          {sourceFailure ? <p role="alert" className={styles.error}>{sourceFailure} {reading ? '표시된 값은 마지막 정상값입니다.' : '아직 보존된 정상값이 없습니다.'}</p> : null}
+          {sourceFailure ? <p role="alert" className={styles.error}><strong>{sourceFailure.title}</strong><br />{sourceFailure.description} {sourceFailure.action} {reading ? '표시된 값은 마지막 정상값입니다.' : '아직 보존된 정상값이 없습니다.'}</p> : null}
         </div>
       </section>
 
@@ -109,6 +105,7 @@ export function Board({ initialState, initialIssue }: { initialState: BoardState
       {latest ? <details className={styles.raw}><summary>이 값의 원자료와 저장값 확인</summary><p>아래는 보존한 공개 원응답과 정규화 저장값입니다. 개인 위치나 인증 정보는 포함하지 않습니다.</p><h3>원자료</h3><pre>{JSON.stringify(latest.raw_payload, null, 2)}</pre><h3>저장값</h3><pre>{JSON.stringify(latest.reading, null, 2)}</pre></details> : null}
     </section>
 
+    <SimulationPanel />
     <footer className={styles.footer}><span>날씨의 기록 <span aria-hidden="true">·</span> Seoul, KR</span><span>Weather data by <a href="https://open-meteo.com/">Open-Meteo.com</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></footer>
   </main>;
 }

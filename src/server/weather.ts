@@ -1,5 +1,6 @@
 import 'server-only';
 import { source, normalizeWeather, type ErrorCode } from '../shared/reading';
+import { classifyTransport, parseRetryAfter } from '../shared/failures';
 import { beginAttempt, readBoard, saveReading, saveFailure } from './readings';
 
 class SourceError extends Error {
@@ -18,13 +19,8 @@ export async function refreshWeather() {
     } catch (error) {
       throw new SourceError(error instanceof Error && ['TimeoutError', 'AbortError'].includes(error.name) ? 'timeout' : 'offline');
     }
-    if ([401, 403].includes(response.status)) throw new SourceError('auth');
-    if (response.status === 429) {
-      const header = response.headers.get('retry-after');
-      const seconds = header && /^\d+$/.test(header) ? Math.min(Number(header), 86400) : null;
-      throw new SourceError('rate_limit', seconds);
-    }
-    if (!response.ok) throw new SourceError('offline');
+    const failure = classifyTransport({ mode: 'http', status: response.status });
+    if (failure) throw new SourceError(failure, parseRetryAfter(response.headers.get('retry-after'), new Date().toISOString()));
     try {
       raw = await response.json();
       reading = normalizeWeather(raw, new Date().toISOString());

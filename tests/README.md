@@ -1,8 +1,8 @@
 # 시험 구성
 
-4단계에서 Vitest 단위 시험 12개와 실제 개발 DB 통합 시험 4개를 구현했습니다. `npm test`, `npm run test:db`로 실행합니다. `node scripts/verify-task-assets.mjs`는 별도로 공식 자산과 참조 adapter만 검사합니다. Playwright는 설치했으며 자동 화면 시나리오는 후속 단계에 작성합니다. 기본 화면은 실제 브라우저로 확인했습니다.
+5단계까지 Vitest 단위 시험 42개와 실제 개발 DB 통합 시험 4개를 구현했습니다. `npm test`, `npm run test:db`로 실행합니다. `node scripts/verify-task-assets.mjs`는 별도로 공식 자산과 참조 adapter만 검사합니다. Playwright는 설치했으며 자동 화면 시나리오는 후속 단계에 작성합니다. 기본 화면과 합성 재생은 실제 브라우저로 확인했습니다. 실패 5종별 전후 상태는 [브라우저 재생 증거](../evidence/synthetic/stage5-browser-replays.json)에 있습니다.
 
-- `unit/`: KST 자정·원천 정규화·응답 변형 거절·Origin/Host 검증·입력 주입 거절·DB 오류 비노출
+- `unit/`: KST 자정·9개 필드 정규화·전송 오류 분류·Retry-After·실제 서비스 오류 경로·Origin/Host·입력 주입·DB 오류 비노출. 합성 엔진의 정상/실패/복구 전체 상태를 해시 확인된 공식 참조 adapter와 대조하고, 초기 실패·같은 날 ID 유지·세션 독립·초기화·반복 복구·expected 변조를 검사합니다.
 - `integration/`: 동시 시도 제한·같은 날짜 갱신·record ID 유지·실패 보존·오래된 시도 거절·runtime 권한
 - `e2e/`: 공개 화면·실패 재생·복구·모바일·키보드 자동 검증 예정
 

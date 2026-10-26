@@ -33,6 +33,32 @@ function object(value: unknown): Record<string, unknown> {
   return value as Record<string, unknown>;
 }
 
+const readingKeys = ['signal_id', 'normalized_value', 'unit', 'source_name', 'source_url', 'source_time', 'fetched_at', 'record_timezone', 'record_date'].sort();
+
+function isTimestamp(value: unknown): value is string {
+  return typeof value === 'string'
+    && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/.test(value)
+    && Number.isFinite(Date.parse(value));
+}
+
+// Live and replay inputs pass this same boundary before either repository writes.
+export function validateReading(raw: unknown): Reading {
+  const value = object(raw);
+  const keys = Object.keys(value).sort();
+  if (keys.length !== readingKeys.length || keys.some((key, index) => key !== readingKeys[index])) throw new Error('Invalid reading keys');
+  if (typeof value.signal_id !== 'string' || value.signal_id.length > 100 || !/^[a-z0-9][a-z0-9._-]*$/.test(value.signal_id)
+    || typeof value.normalized_value !== 'number' || !Number.isFinite(value.normalized_value)
+    || typeof value.unit !== 'string' || !value.unit.trim() || value.unit.length > 24
+    || typeof value.source_name !== 'string' || !value.source_name.trim() || value.source_name.length > 120
+    || typeof value.source_url !== 'string'
+    || (value.source_time !== null && !isTimestamp(value.source_time))
+    || !isTimestamp(value.fetched_at) || value.record_timezone !== 'Asia/Seoul'
+    || value.record_date !== kstDate(value.fetched_at)) throw new Error('Invalid normalized reading');
+  const url = new URL(value.source_url);
+  if (url.protocol !== 'https:') throw new Error('Source must use HTTPS');
+  return { ...value } as Reading;
+}
+
 export function normalizeWeather(raw: unknown, fetchedAt: string): Reading {
   const payload = object(raw);
   const current = object(payload.current);
@@ -43,10 +69,10 @@ export function normalizeWeather(raw: unknown, fetchedAt: string): Reading {
     || typeof current.time !== 'number' || !Number.isSafeInteger(current.time)) throw new Error('Weather schema changed');
   const observed = new Date(current.time * 1000);
   if (!Number.isFinite(observed.getTime()) || observed.getTime() > new Date(fetchedAt).getTime()) throw new Error('Invalid source time');
-  return {
+  return validateReading({
     signal_id: source.signal_id, normalized_value: current.temperature_2m, unit: '°C',
     source_name: source.source_name, source_url: source.source_url,
     source_time: observed.toISOString(), fetched_at: fetchedAt,
     record_timezone: 'Asia/Seoul', record_date: kstDate(fetchedAt),
-  };
+  });
 }

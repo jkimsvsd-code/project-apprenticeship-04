@@ -2,9 +2,9 @@
 
 외부 데이터 조회가 실패해도 마지막 정상값을 보존하고, 값의 출처·시각·실패 이유를 설명하는 과제 4 프로젝트입니다.
 
-현재는 **4단계: 실제 조회 → 정규화 → 영속 저장 → 기본 화면 구현**까지 완료했습니다. Next.js 16.4.3·React 19.3.1·TypeScript·Node.js 24와 Neon Postgres를 사용합니다. 원천은 Open-Meteo의 서울 고정 지점 모델 기반 기온입니다. 합성 재생 패널·변화량 UI·실제 이틀 영수증 검증은 후속 단계입니다.
+현재는 **5단계: 공식 합성 실패 5종·정상값 보존·복구 재생**까지 완료했습니다. Next.js 16.4.3·React 19.3.1·TypeScript·Node.js 24와 Neon Postgres를 사용합니다. 원천은 Open-Meteo의 서울 고정 지점 모델 기반 기온입니다. 실제 기록의 변화량 UI·남은 UX·실제 이틀 영수증 검증은 후속 단계입니다.
 
-[기본 정보판 열기](https://project-apprenticeship-04.vercel.app) · 최종 제출 전 기능을 구현 중인 화면입니다.
+[기본 정보판 열기](https://project-apprenticeship-04.vercel.app) · [실패·복구 패널 열기](https://project-apprenticeship-04.vercel.app/#simulation) · 최종 제출 전 기능을 구현 중인 화면입니다.
 
 ## 구현 범위
 
@@ -35,6 +35,7 @@ project-apprenticeship-04/
 │   ├── requirements.md       # 과제 기준과 승인된 UX 범위
 │   ├── architecture.md       # 모듈 책임·저장·오류·시각 처리
 │   ├── verification.md       # 실제 조회 및 합성 시험 확인 절차
+│   ├── simulation.md         # 합성 재생 조작·격리·판정 안내
 │   ├── submission.md         # 제출문 작성 틀
 │   ├── data-source.md        # 원천 선택·시각·이용 조건
 │   ├── task-contract.md      # 공개 계약 v2와 PDF 대조
@@ -83,6 +84,8 @@ npm run dev
 
 `http://127.0.0.1:3000`에서 '첫 기온 불러오기' 또는 '지금 기온 새로고침'을 누릅니다. 성공한 값·단위·출처·두 시각·KST 시간대와 일별 저장값을 확인할 수 있습니다. DB나 원천에 연결되지 않으면 원인을 안내하며 가짜 값으로 대체하지 않습니다.
 
+합성 패널은 **정상 기준값 105 준비 → 실패 한 종류 선택 → 다시 시도 · 합성 D2 복구** 순서로 확인합니다. 실패 시 105pt·1건이 보존되고 복구 시 120pt·2건·정상이 됩니다. 합성 초기화는 이 창의 시험 상태만 지웁니다. 실제 원천 호출·실제 기록 저장은 하지 않습니다. [자세한 재생 안내](docs/simulation.md)를 확인하세요.
+
 앱 서버에는 `APP_DATABASE_URL`, 로컬 migration에는 `DATABASE_URL_UNPOOLED`가 필요합니다. 앱 전용 역할은 삭제 권한이 없습니다. 최초 역할 생성 후에는 `APP_DATABASE_URL`도 해당 Vercel 환경에 등록합니다. 구체적인 권한과 환경 분리는 [DB 안내](db/README.md)를 확인합니다.
 
 ## 검사
@@ -96,13 +99,14 @@ npm run verify:assets
 npm run build
 ```
 
-`test:db`는 실제 개발 DB에 합성 시험 신호만 생성·정리합니다. 운영 DB를 사용하지 않습니다. 현재 단위 12개·개발 DB 통합 4개를 확인했으며, 공식 fixture 앱 재생과 Playwright 자동 화면 시험은 아직 후속 작업입니다. [4단계 검증 결과](evidence/implementation/stage4.json)에 검사 범위를 기록했습니다.
+`test:db`는 실제 개발 DB에 합성 시험 신호만 생성·정리합니다. 운영 DB를 사용하지 않습니다. 현재 단위 42개·개발 DB 통합 4개, 공식 fixture 9개의 앱 상태 전이, 실제 브라우저의 실패 5종·복구를 확인했습니다. Playwright 자동 화면 시험과 모바일·키보드 종합 점검은 후속 작업입니다. [5단계 검증 결과](evidence/implementation/stage5.json)에 검사 범위를 기록했습니다.
 
 ## 문서 안내
 
 - [요구사항 및 승인 범위](docs/requirements.md)
 - [구현 구조와 데이터 원칙](docs/architecture.md)
 - [검증 계획](docs/verification.md)
+- [합성 실패·복구 재생 안내](docs/simulation.md)
 - [제출문 작성 틀](docs/submission.md)
 - [구현 순서와 확장 계획](docs/roadmap.md)
 - [단계별 작업 및 커밋 원칙](CONTRIBUTING.md)
