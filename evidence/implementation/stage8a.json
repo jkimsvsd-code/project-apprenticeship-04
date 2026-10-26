@@ -1,0 +1,70 @@
+{
+  "scope": "stage8A_submission_text_draft",
+  "draft_date_kst": "2026-10-26",
+  "document": "docs/submission.md",
+  "status": "draft_complete",
+  "artifact_url": "https://project-apprenticeship-04.vercel.app/",
+  "source_url": "https://github.com/jkimsvsd-code/project-apprenticeship-04/tree/3e919bed097659f4931e40dc6ffca2ea9aaecfc6",
+  "source_commit": "3e919bed097659f4931e40dc6ffca2ea9aaecfc6",
+  "source_pin_role": "7A verified code baseline; replace with final submission revision in 8B",
+  "content": {
+    "verification_lines": 4,
+    "verification_actions": 3,
+    "judgment_lines": 3,
+    "known_real_record_dates": [
+      "2026-10-26"
+    ],
+    "sealed_t04_day_receipts": 0,
+    "actual_two_day_verification_complete": false
+  },
+  "student_judgment_basis": [
+    {
+      "claim": "Prioritize required 1–8 and U1–U7, defer U9",
+      "basis": "Explicit user approval in this conversation"
+    },
+    {
+      "claim": "Create the public repository personally and commit each stage",
+      "basis": "Explicit user instructions and supplied repository URL"
+    },
+    {
+      "claim": "Change the initial order so two-day verification is last",
+      "basis": "User requested reordering and approved 6 → 7A → 8A → 7B → 8B"
+    }
+  ],
+  "student_final_wording_review_pending": true,
+  "platform_submission_performed": false,
+  "final_35_criterion_grade_performed": false,
+  "remaining": [
+    "official receipt issuance procedure",
+    "two sealed t04_day receipts on distinct actual KST dates",
+    "receipt-aligned immutable storage and displayed value binding",
+    "recompute actual two-date delta",
+    "student wording review and final commit URL/public-access check"
+  ],
+  "checks": {
+    "verification_lines": 4,
+    "number_of_actions": 3,
+    "judgment_lines": 3,
+    "single_https_address_fields": 2,
+    "full_commit_pin": "pass",
+    "pending_real_verification": "explicit",
+    "student_decision_provenance": "explicit user choices only; final wording review pending",
+    "local_markdown_links": 71,
+    "known_local_secret_scan": "pass",
+    "json_parse": "pass",
+    "documentation_only": true
+  },
+  "url_checks": [
+    {
+      "url": "https://project-apprenticeship-04.vercel.app/",
+      "http_status": 200,
+      "authentication_sent": false
+    },
+    {
+      "url": "https://github.com/jkimsvsd-code/project-apprenticeship-04/tree/3e919bed097659f4931e40dc6ffca2ea9aaecfc6",
+      "http_status": 200,
+      "authentication_sent": false
+    }
+  ],
+  "url_verified_at": "2026-10-26T03:38:39.247Z"
+}

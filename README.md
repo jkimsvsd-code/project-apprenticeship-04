@@ -2,7 +2,7 @@
 
 외부 데이터 조회가 실패해도 마지막 정상값을 보존하고, 값의 출처·시각·실패 이유를 설명하는 과제 4 프로젝트입니다.
 
-현재는 **7A: 공개 접근·보안 종합 점검**까지 완료했습니다. Next.js 16.4.3·React 19.3.1·TypeScript·Node.js 24와 Neon Postgres를 사용합니다. 원천은 Open-Meteo의 서울 고정 지점 모델 기반 기온입니다. 실제 기록이 한 날짜뿐이면 비교 부족을 안내하며, 실제 이틀 영수증 검증은 마지막에 진행합니다. 다음은 8A 제출문 초안입니다.
+현재는 **8A: 제출문 초안 작성**까지 완료했습니다. Next.js 16.4.3·React 19.3.1·TypeScript·Node.js 24와 Neon Postgres를 사용합니다. 원천은 Open-Meteo의 서울 고정 지점 모델 기반 기온입니다. 실제 기록이 한 날짜뿐이면 비교 부족을 안내하며, 실제 이틀 영수증 검증은 마지막에 진행합니다. [제출문 초안](docs/submission.md)에 확인법 4줄·판단 기록 3줄·공개 주소와 미완료 항목을 정리했습니다. 다음은 7B 실제 이틀·영수증 대조입니다.
 
 [기본 정보판 열기](https://project-apprenticeship-04.vercel.app) · [실패·복구 패널 열기](https://project-apprenticeship-04.vercel.app/#simulation) · 최종 제출 전 기능을 구현 중인 화면입니다.
 
@@ -38,7 +38,7 @@ project-apprenticeship-04/
 │   ├── verification.md       # 실제 조회 및 합성 시험 확인 절차
 │   ├── security-review.md    # 공개 접근·보안 점검 범위와 한계
 │   ├── simulation.md         # 합성 재생 조작·격리·판정 안내
-│   ├── submission.md         # 제출문 작성 틀
+│   ├── submission.md         # 확인법·판단·주소·미완료 항목을 담은 초안
 │   ├── data-source.md        # 원천 선택·시각·이용 조건
 │   ├── task-contract.md      # 공개 계약 v2와 PDF 대조
 │   ├── stack-and-storage.md  # 기술 스택·영속 저장 결정
@@ -113,7 +113,7 @@ npm run build
 - [검증 계획](docs/verification.md)
 - [공개 접근·보안 점검](docs/security-review.md)
 - [합성 실패·복구 재생 안내](docs/simulation.md)
-- [제출문 작성 틀](docs/submission.md)
+- [제출문 초안](docs/submission.md)
 - [구현 순서와 확장 계획](docs/roadmap.md)
 - [단계별 작업 및 커밋 원칙](CONTRIBUTING.md)
 - [데이터 원천과 이용 조건](docs/data-source.md)

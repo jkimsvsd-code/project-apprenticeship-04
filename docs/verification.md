@@ -1,6 +1,6 @@
 # 검증 계획
 
-공식 자산·참조 adapter, 실제 조회·저장·합성 재생에 더해 [6단계 검증](../evidence/implementation/stage6.json)에서 단위 63개·개발 DB 통합 6개·빌드, 브라우저의 실제 조회/대기·키보드 조작·320/390px·공통 계산 상세를 확인했습니다. [5단계 검증](../evidence/implementation/stage5.json)은 단위 42개·개발 DB 통합 4개, 앱 상태와 참조 adapter의 전체 상태 비교, 실제 브라우저의 실패 5종·복구·초기화·실제 기록 불변을 다룹니다. [4단계 검증](../evidence/implementation/stage4.json)은 기본 조회·저장·재접속 자료입니다. 실제 변화량 UI와 UX U1~U7은 구현했으며, 현재 실제 한 날짜의 기록 부족 안내와 격리된 합성 두 날짜의 계산 표시를 검증했습니다. [7A 공개 접근·보안 점검](../evidence/implementation/stage7a.json)은 완료했습니다. 쿠키 없는 요청과 사용자 시크릿 창 확인을 분리해 기록했습니다. 실제 이틀과 영수증 대조는 아직 미완료입니다. 사용자의 승인에 따라 공개 점검과 제출문 초안을 먼저 진행합니다. [공식 자산 보고서](../evidence/synthetic/asset-verification.json)는 제품 판정과 구분합니다.
+공식 자산·참조 adapter, 실제 조회·저장·합성 재생에 더해 [6단계 검증](../evidence/implementation/stage6.json)에서 단위 63개·개발 DB 통합 6개·빌드, 브라우저의 실제 조회/대기·키보드 조작·320/390px·공통 계산 상세를 확인했습니다. [5단계 검증](../evidence/implementation/stage5.json)은 단위 42개·개발 DB 통합 4개, 앱 상태와 참조 adapter의 전체 상태 비교, 실제 브라우저의 실패 5종·복구·초기화·실제 기록 불변을 다룹니다. [4단계 검증](../evidence/implementation/stage4.json)은 기본 조회·저장·재접속 자료입니다. 실제 변화량 UI와 UX U1~U7은 구현했으며, 현재 실제 한 날짜의 기록 부족 안내와 격리된 합성 두 날짜의 계산 표시를 검증했습니다. [7A 공개 접근·보안 점검](../evidence/implementation/stage7a.json)은 완료했습니다. 쿠키 없는 요청과 사용자 시크릿 창 확인을 분리해 기록했습니다. 실제 이틀과 영수증 대조는 아직 미완료입니다. 사용자의 승인에 따라 공개 점검과 [8A 제출문 초안](submission.md)을 먼저 완료했습니다. 확인법 4줄·판단 3줄과 단일 HTTPS/commit URL 형식을 검토했으며 실제 이틀 대조와 최종 채점은 남아 있습니다. [공식 자산 보고서](../evidence/synthetic/asset-verification.json)는 제품 판정과 구분합니다.
 
 ## 공식 자산 확인
 
