@@ -1,0 +1,43 @@
+{
+  "verified_at": "2026-10-26T01:55:36.734Z",
+  "verified_code_commit": "9b9161b924a267b314a5d4cddd3b4536a7098b7f",
+  "url": "https://project-apprenticeship-04.vercel.app",
+  "scope": "single_real_production_date; not a platform receipt",
+  "anonymous_api_status": 200,
+  "reading": {
+    "signal_id": "seoul-temperature-2m",
+    "record_date": "2026-10-26",
+    "normalized_value": 16.4,
+    "unit": "°C",
+    "source_name": "Open-Meteo",
+    "source_url": "https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current=temperature_2m&temperature_unit=celsius&timeformat=unixtime&timezone=Asia%2FSeoul",
+    "source_time": "2026-10-26T01:45:00.000Z",
+    "fetched_at": "2026-10-26T01:54:17.707Z",
+    "record_timezone": "Asia/Seoul"
+  },
+  "record_id": "181411c9-60f0-4d8e-8a11-82718bb48f0b",
+  "raw_payload": {
+    "current": {
+      "time": 1792979100,
+      "interval": 900,
+      "temperature_2m": 16.4
+    },
+    "latitude": 37.55,
+    "timezone": "Asia/Seoul",
+    "elevation": 34,
+    "longitude": 127,
+    "current_units": {
+      "time": "unixtime",
+      "interval": "seconds",
+      "temperature_2m": "°C"
+    },
+    "generationtime_ms": 0.023484230041503906,
+    "utc_offset_seconds": 32400,
+    "timezone_abbreviation": "GMT+9"
+  },
+  "production_record_count": 1,
+  "browser_refresh_and_reload": "pass",
+  "raw_storage_display_value_match": true,
+  "sealed_t04_day_receipts": 0,
+  "actual_two_day_verification_complete": false
+}

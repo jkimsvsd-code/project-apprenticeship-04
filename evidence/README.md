@@ -6,6 +6,8 @@
 
 `stage4.json`과 `stage4-board.png`는 실제 원천 → API → 개발 DB → 화면과 재접속 보존의 확인 자료입니다. Development DB에서 조회한 서울 기온 1개 날짜이며 플랫폼 t04_day 영수증이 아닙니다. 운영 DB와 분리했음을 함께 확인했습니다.
 
+`production-first-reading.json`과 `production-board.png`는 배포 후 별도로 확인한 운영 첫 실제 조회와 재접속 보존 자료입니다. 해당 코드 commit과 검증 시각을 기록했습니다. 이 역시 플랫폼 봉인 영수증이 아니며 실제 이틀 완료로 계산하지 않습니다.
+
 ## source-selection/
 
 선정 원천의 실제 응답·조회 시각·정규화 매핑 예시를 보관합니다. 원천 적합성 확인 자료이며 앱 영속 저장값·화면값·t04_day 영수증을 대체하지 않습니다.

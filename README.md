@@ -4,6 +4,8 @@
 
 현재는 **4단계: 실제 조회 → 정규화 → 영속 저장 → 기본 화면 구현**까지 완료했습니다. Next.js 16.4.3·React 19.3.1·TypeScript·Node.js 24와 Neon Postgres를 사용합니다. 원천은 Open-Meteo의 서울 고정 지점 모델 기반 기온입니다. 합성 재생 패널·변화량 UI·실제 이틀 영수증 검증은 후속 단계입니다.
 
+[기본 정보판 열기](https://project-apprenticeship-04.vercel.app) · 최종 제출 전 기능을 구현 중인 화면입니다.
+
 ## 구현 범위
 
 - 필수: 실제 공개 값 하나 조회, 맥락 표시, 실패 다섯 종류 재생, 마지막 정상값 보존과 복구, KST 일별 기록, 실제 이틀 검증, 무로그인 공개 및 비밀값 보호, 제출 증거.
@@ -122,5 +124,7 @@ node scripts/verify-task-assets.mjs
 ## 실행 및 공개 상태
 
 Vercel 프로젝트와 GitHub가 연결되어 있으며 Development/Preview와 Production은 서로 다른 Neon DB를 사용합니다. 기본 화면의 로컬 종단 흐름은 확인했습니다. 공개 배포의 최종 무인증 점검과 제출용 이틀 검증은 7단계에 수행합니다. [공개 소스 저장소](https://github.com/jkimsvsd-code/project-apprenticeship-04)는 연결되어 있습니다.
+
+4단계 코드의 Vercel 빌드가 Ready이며, 배포 화면·읽기 API의 무로그인 HTTP 200과 운영 첫 조회·재접속 보존을 확인했습니다. [운영 검증 자료](evidence/implementation/production-first-reading.json)는 실제 한 날짜의 기록입니다. 플랫폼 봉인 영수증은 0건이므로 실제 이틀 검증 완료가 아닙니다.
 
 Open-Meteo 데이터는 출처와 CC BY 4.0을 표시하며 무료 API는 비상업 교육용으로 사용합니다. 공식 과제 자산은 원본·출처·해시를 보존합니다. 과제 자산에는 별도의 라이선스 파일이 없어 추가 권리를 임의로 부여하지 않습니다. 프로젝트 자체 라이선스는 아직 정하지 않았습니다.
