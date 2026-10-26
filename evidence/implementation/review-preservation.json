@@ -1,0 +1,36 @@
+{
+  "verified_at": "2026-10-26T05:16:22.630947+00:00",
+  "scope": "immutable_real_reading_preservation_before_two_day_review",
+  "feature_status": "implemented",
+  "checks": {
+    "unit_tests": 69,
+    "development_database_integration_tests": 10,
+    "next_production_build": "pass",
+    "typescript": "pass through build",
+    "eslint": "pass",
+    "daily_and_snapshot_atomic_transaction": "implemented; duplicate/concurrent/failed-input coverage",
+    "same_day_daily_row": "one; archived readings are separate",
+    "old_snapshot_after_actual_refresh": "pass; exact raw/normalized/receipt fields unchanged",
+    "snapshot_id_per_success": "pass; new success gets a new permalink",
+    "snapshot_runtime_permissions": "SELECT/INSERT permitted; UPDATE/DELETE denied",
+    "same_day_comparison": "pass; not counted as two real days",
+    "foreign_comparison_link": "rejected without fetching foreign URL",
+    "keyboard_form": "pass",
+    "desktop_browser_console_errors": 0,
+    "secret_scan": "pass; repository history, client/server build and known local secrets",
+    "local_markdown_links": 77,
+    "invalid_snapshot_route": "404 for invalid and nonexistent UUID",
+    "old_link_outside_recent_twenty": "pass; direct lookup still reads original archived value"
+  },
+  "migrations": {
+    "development": "002 applied; original daily values preserved",
+    "production": "002 applied; original daily values backfilled without changing fetched_at"
+  },
+  "limits": [
+    "Official platform receipts are neither issued nor verified by this feature.",
+    "Actual records still cover one KST date; two-day/receipt validation remains pending.",
+    "Viewport override did not affect hidden test tabs; a 320px check has not been confirmed in this run."
+  ],
+  "sealed_t04_day_receipts": 0,
+  "actual_two_day_verification_complete": false
+}

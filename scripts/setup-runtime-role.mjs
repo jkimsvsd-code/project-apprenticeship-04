@@ -24,14 +24,15 @@ try {
   await sql.transaction([
     sql`GRANT USAGE ON SCHEMA public TO t04_app`,
     sql`GRANT SELECT, INSERT, UPDATE ON daily_readings, signal_state TO t04_app`,
-    sql`GRANT SELECT ON review_snapshots TO t04_app`,
+    sql`GRANT SELECT, INSERT ON review_snapshots TO t04_app`,
+    sql`REVOKE UPDATE, DELETE ON review_snapshots FROM t04_app`,
   ]);
   const client = neon(runtime);
-  const [check] = await client`SELECT current_user AS role, has_table_privilege(current_user, 'daily_readings', 'INSERT') AS can_insert, has_table_privilege(current_user, 'daily_readings', 'DELETE') AS can_delete`;
-  if (check.role !== 't04_app' || !check.can_insert || check.can_delete) throw new Error('Runtime privilege check failed');
+  const [check] = await client`SELECT current_user AS role, has_table_privilege(current_user, 'daily_readings', 'INSERT') AS can_insert, has_table_privilege(current_user, 'daily_readings', 'DELETE') AS can_delete, has_table_privilege(current_user, 'review_snapshots', 'INSERT') AS can_archive, has_table_privilege(current_user, 'review_snapshots', 'UPDATE') AS can_rewrite_archive, has_table_privilege(current_user, 'review_snapshots', 'DELETE') AS can_delete_archive`;
+  if (check.role !== 't04_app' || !check.can_insert || check.can_delete || !check.can_archive || check.can_rewrite_archive || check.can_delete_archive) throw new Error('Runtime privilege check failed');
   const original = readFileSync(filename, 'utf8').replace(/^APP_DATABASE_URL=.*\r?\n?/gm, '');
   writeFileSync(filename, `${original.trimEnd()}\nAPP_DATABASE_URL=${JSON.stringify(runtime)}\n`, { mode: 0o600 });
-  console.log('APP_DATABASE_URL ready; runtime SELECT/INSERT/UPDATE verified; DELETE denied. Secret value not printed.');
+  console.log('APP_DATABASE_URL ready; daily write and append-only archive privileges verified. Secret value not printed.');
 } catch {
   console.error('Runtime role setup failed. Credentials and database error details are not logged.');
   process.exitCode = 1;

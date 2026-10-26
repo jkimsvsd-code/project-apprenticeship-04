@@ -2,7 +2,7 @@
 
 외부 데이터 조회가 실패해도 마지막 정상값을 보존하고, 값의 출처·시각·실패 이유를 설명하는 과제 4 프로젝트입니다.
 
-현재는 **8A: 제출문 초안 작성**까지 완료했습니다. Next.js 16.4.3·React 19.3.1·TypeScript·Node.js 24와 Neon Postgres를 사용합니다. 원천은 Open-Meteo의 서울 고정 지점 모델 기반 기온입니다. 실제 기록이 한 날짜뿐이면 비교 부족을 안내하며, 실제 이틀 영수증 검증은 마지막에 진행합니다. [제출문 초안](docs/submission.md)에 확인법 4줄·판단 기록 3줄·공개 주소와 미완료 항목을 정리했습니다. 다음은 7B 실제 이틀·영수증 대조입니다.
+현재는 **8A: 제출문 초안 작성**까지 완료했습니다. Next.js 16.4.3·React 19.3.1·TypeScript·Node.js 24와 Neon Postgres를 사용합니다. 원천은 Open-Meteo의 서울 고정 지점 모델 기반 기온입니다. 실제 기록이 한 날짜뿐이면 비교 부족을 안내하며, 실제 이틀 영수증 검증은 마지막에 진행합니다. [제출문 초안](docs/submission.md)에 확인법 4줄·판단 기록 3줄·공개 주소와 미완료 항목을 정리했습니다. 7B 준비 기능인 [고정 보관본·대조 화면](docs/preserved-readings.md)을 구현했습니다. 공식 영수증 확보와 실제 이틀 대조는 남아 있습니다.
 
 [기본 정보판 열기](https://project-apprenticeship-04.vercel.app) · [실패·복구 패널 열기](https://project-apprenticeship-04.vercel.app/#simulation) · 최종 제출 전 기능을 구현 중인 화면입니다.
 
@@ -37,6 +37,7 @@ project-apprenticeship-04/
 │   ├── architecture.md       # 모듈 책임·저장·오류·시각 처리
 │   ├── verification.md       # 실제 조회 및 합성 시험 확인 절차
 │   ├── security-review.md    # 공개 접근·보안 점검 범위와 한계
+│   ├── preserved-readings.md # 고정 기록 링크로 실제 이틀 확인
 │   ├── simulation.md         # 합성 재생 조작·격리·판정 안내
 │   ├── submission.md         # 확인법·판단·주소·미완료 항목을 담은 초안
 │   ├── data-source.md        # 원천 선택·시각·이용 조건
@@ -50,6 +51,7 @@ project-apprenticeship-04/
 │   ├── board/                # 값·출처·시각·상태·재시도 UI
 │   ├── history/              # KST 일별 기록·변화량·계산 상세
 │   ├── simulation/           # 합성 실패·복구 재생 및 격리 상태
+│   ├── review/               # 불변 보관본·원자료·고정 링크 비교
 │   ├── shared/               # 값 정규화·시간·원천 응답 검증
 │   └── server/               # 조회 경로·영속 저장·실제 기록 보호
 ├── public/
@@ -104,7 +106,7 @@ npm run verify:assets
 npm run build
 ```
 
-`test:db`는 실제 개발 DB에 합성 시험 신호만 생성·정리합니다. 운영 DB를 사용하지 않습니다. 현재 단위 63개·개발 DB 통합 6개, 공식 fixture 9개의 앱 상태 전이, 브라우저의 실제 조회·대기·합성 재생·계산 상세를 확인했습니다. 320·390px에서 페이지 가로 넘침이 없고, 키보드 바로가기·조작·초점을 확인했습니다. 브라우저 검사는 CUA로 수행했으며 별도 Playwright 자동 시나리오는 아직 작성하지 않았습니다. [6단계 검증 결과](evidence/implementation/stage6.json)에 범위를 기록했습니다.
+`test:db`는 실제 개발 DB에 합성 시험 신호만 생성·정리합니다. 운영 DB를 사용하지 않습니다. 현재 단위 69개·개발 DB 통합 10개, 공식 fixture 9개의 앱 상태 전이, 브라우저의 실제 조회·대기·합성 재생·계산 상세를 확인했습니다. 320·390px에서 페이지 가로 넘침이 없고, 키보드 바로가기·조작·초점을 확인했습니다. 브라우저 검사는 CUA로 수행했으며 별도 Playwright 자동 시나리오는 아직 작성하지 않았습니다. [6단계 검증](evidence/implementation/stage6.json)과 [고정 보관 기능 검증](evidence/implementation/review-preservation.json)에 범위를 기록했습니다.
 
 ## 문서 안내
 
@@ -114,6 +116,7 @@ npm run build
 - [공개 접근·보안 점검](docs/security-review.md)
 - [합성 실패·복구 재생 안내](docs/simulation.md)
 - [제출문 초안](docs/submission.md)
+- [고정 기록을 이용한 실제 이틀 확인](docs/preserved-readings.md)
 - [구현 순서와 확장 계획](docs/roadmap.md)
 - [단계별 작업 및 커밋 원칙](CONTRIBUTING.md)
 - [데이터 원천과 이용 조건](docs/data-source.md)

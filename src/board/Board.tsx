@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react';
 import { formatKst, source, type BoardState } from '../shared/reading';
 import { failureCopy } from '../shared/failures';
+import { ReviewArchive } from '../review/ReviewArchive';
 import { ComparisonCard } from '../history/ComparisonCard';
 import { elapsedText, remainingSeconds } from '../shared/timing';
 import { useClock } from './useClock';
@@ -26,6 +27,7 @@ export function Board({ initialState, initialIssue, initialNow = null }: { initi
   const [now, setNow] = useClock(initialNow);
   const wait = remainingSeconds(state?.next_allowed_at ?? null, now);
   const reading = state?.reading;
+  const currentSnapshot = state?.snapshots?.find((row) => row.reading.fetched_at === reading?.fetched_at);
   const stale = state?.freshness === 'stale';
   const latest = state?.records.find((record) => record.reading.record_date === reading?.record_date);
   const sourceFailure = state?.error_code && state.error_code !== 'none' ? failureCopy[state.error_code] : null;
@@ -85,6 +87,7 @@ export function Board({ initialState, initialIssue, initialNow = null }: { initi
         <button type="button" className={styles.refresh} onClick={refresh} disabled={pending || wait > 0} aria-describedby="retry-wait">
           <span aria-hidden="true">↻</span> {pending ? '기온을 조회하고 있습니다…' : wait > 0 ? '대기 후 다시 조회할 수 있습니다' : reading ? '지금 기온 새로고침' : '첫 기온 불러오기'}
         </button>
+        {currentSnapshot ? <p className={styles.notice}><a href={`/review/${currentSnapshot.snapshot_id}`} data-testid="current-snapshot-link">이 값의 고정 기록 보기 →</a></p> : null}
         <div id="retry-wait" className={styles.wait} data-testid="retry-wait">
           {state?.last_attempt_at ? <>
             <p>{state.retry_after_seconds !== null ? `원천 대기 안내: ${state.retry_after_seconds}초 (Retry-After).` : state.error_code === 'rate_limit' ? '원천이 대기 시간을 제공하지 않았습니다.' : '원천의 별도 대기 안내가 없습니다.'} 앱은 중복 조회를 줄이기 위해 최소 15초 간격을 둡니다.</p>
@@ -122,6 +125,7 @@ export function Board({ initialState, initialIssue, initialNow = null }: { initi
       {latest ? <details className={styles.raw}><summary>이 값의 원자료와 저장값 확인</summary><p>아래는 보존한 공개 원응답과 정규화 저장값입니다. 개인 위치나 인증 정보는 포함하지 않습니다.</p><h3>원자료</h3><pre>{JSON.stringify(latest.raw_payload, null, 2)}</pre><h3>저장값</h3><pre>{JSON.stringify(latest.reading, null, 2)}</pre></details> : null}
     </section>
 
+    <ReviewArchive snapshots={state?.snapshots ?? []} />
     <SimulationPanel />
     <footer className={styles.footer}><span>날씨의 기록 <span aria-hidden="true">·</span> Seoul, KR</span><span>Weather data by <a href="https://open-meteo.com/">Open-Meteo.com</a> · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a></span></footer>
   </main>;

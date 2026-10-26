@@ -1,0 +1,15 @@
+{
+  "previousLink": "/review/5713b624-e012-431a-a8a7-4d0fb65693b6",
+  "newLink": "/review/6a151a1f-7555-40c1-84fa-fef0a92af2c8",
+  "oldEvidenceUnchanged": true,
+  "before": {
+    "fields": "{\n  \"source_url\": \"https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current=temperature_2m&temperature_unit=celsius&timeformat=unixtime&timezone=Asia%2FSeoul\",\n  \"source_observed_at\": \"2026-10-26T02:45:00.000Z\",\n  \"normalized_value\": 17,\n  \"unit\": \"°C\"\n}",
+    "reading": "{\n  \"unit\": \"°C\",\n  \"signal_id\": \"seoul-temperature-2m\",\n  \"fetched_at\": \"2026-10-26T02:52:57.489Z\",\n  \"source_url\": \"https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current=temperature_2m&temperature_unit=celsius&timeformat=unixtime&timezone=Asia%2FSeoul\",\n  \"record_date\": \"2026-10-26\",\n  \"source_name\": \"Open-Meteo\",\n  \"source_time\": \"2026-10-26T02:45:00.000Z\",\n  \"record_timezone\": \"Asia/Seoul\",\n  \"normalized_value\": 17\n}",
+    "raw": "{\n  \"current\": {\n    \"time\": 1792982700,\n    \"interval\": 900,\n    \"temperature_2m\": 17\n  },\n  \"latitude\": 37.55,\n  \"timezone\": \"Asia/Seoul\",\n  \"elevation\": 34,\n  \"longitude\": 127,\n  \"current_units\": {\n    \"time\": \"unixtime\",\n    \"interval\": \"seconds\",\n    \"temperature_2m\": \"°C\"\n  },\n  \"generationtime_ms\": 0.02205371856689453,\n  \"utc_offset_seconds\": 32400,\n  \"timezone_abbreviation\": \"GMT+9\"\n}"
+  },
+  "after": {
+    "fields": "{\n  \"source_url\": \"https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current=temperature_2m&temperature_unit=celsius&timeformat=unixtime&timezone=Asia%2FSeoul\",\n  \"source_observed_at\": \"2026-10-26T02:45:00.000Z\",\n  \"normalized_value\": 17,\n  \"unit\": \"°C\"\n}",
+    "reading": "{\n  \"unit\": \"°C\",\n  \"signal_id\": \"seoul-temperature-2m\",\n  \"fetched_at\": \"2026-10-26T02:52:57.489Z\",\n  \"source_url\": \"https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current=temperature_2m&temperature_unit=celsius&timeformat=unixtime&timezone=Asia%2FSeoul\",\n  \"record_date\": \"2026-10-26\",\n  \"source_name\": \"Open-Meteo\",\n  \"source_time\": \"2026-10-26T02:45:00.000Z\",\n  \"record_timezone\": \"Asia/Seoul\",\n  \"normalized_value\": 17\n}",
+    "raw": "{\n  \"current\": {\n    \"time\": 1792982700,\n    \"interval\": 900,\n    \"temperature_2m\": 17\n  },\n  \"latitude\": 37.55,\n  \"timezone\": \"Asia/Seoul\",\n  \"elevation\": 34,\n  \"longitude\": 127,\n  \"current_units\": {\n    \"time\": \"unixtime\",\n    \"interval\": \"seconds\",\n    \"temperature_2m\": \"°C\"\n  },\n  \"generationtime_ms\": 0.02205371856689453,\n  \"utc_offset_seconds\": 32400,\n  \"timezone_abbreviation\": \"GMT+9\"\n}"
+  }
+}

@@ -7,7 +7,7 @@ import { source, type BoardState, type Reading } from '../../src/shared/reading'
 const reading: Reading = { ...(fixtureById['T04-NORMAL-D1-B'].payload as Reading), signal_id: source.signal_id, unit: '°C' };
 const second: Reading = { ...(fixtureById['T04-NORMAL-D2'].payload as Reading), signal_id: source.signal_id, unit: '°C' };
 const now = Date.parse(reading.fetched_at) + 3600000;
-const empty: BoardState = { reading: null, records: [], freshness: null, error_code: null, next_allowed_at: null, last_attempt_at: null, retry_after_seconds: null };
+const empty: BoardState = { reading: null, records: [], snapshots: [], freshness: null, error_code: null, next_allowed_at: null, last_attempt_at: null, retry_after_seconds: null };
 function html(state = empty) { return renderToStaticMarkup(<Board initialState={state} initialIssue={null} initialNow={now} />); }
 it('renders first visit instructions, an accessible skip link and no invented value', () => {
   const rendered = html();

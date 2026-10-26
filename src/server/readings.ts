@@ -1,6 +1,6 @@
 import 'server-only';
 import { database } from './database';
-import { source, validateReading, type Reading, type DailyReading, type BoardState, type ErrorCode } from '../shared/reading';
+import { source, validateReading, type Reading, type DailyReading, type BoardState, type ReviewSummary, type ErrorCode } from '../shared/reading';
 
 export type Attempt = { number: string; startedAt: string };
 
@@ -29,6 +29,12 @@ export async function saveReading(reading: Reading, raw: unknown, attempt: Attem
         normalized_value = EXCLUDED.normalized_value, unit = EXCLUDED.unit, source_name = EXCLUDED.source_name,
         source_url = EXCLUDED.source_url, source_time = EXCLUDED.source_time, fetched_at = EXCLUDED.fetched_at, raw_payload = EXCLUDED.raw_payload
       WHERE daily_readings.fetched_at <= EXCLUDED.fetched_at`,
+    sql`INSERT INTO review_snapshots (record_id, signal_id, record_date, fetched_at, reading, raw_payload)
+      SELECT d.record_id, d.signal_id, d.record_date, d.fetched_at, ${JSON.stringify(reading)}::jsonb, d.raw_payload
+      FROM daily_readings d JOIN signal_state s ON s.signal_id = d.signal_id
+      WHERE d.signal_id = ${reading.signal_id} AND d.fetched_at = ${reading.fetched_at}::timestamptz
+        AND s.last_attempt_no = ${attempt.number}::bigint
+      ON CONFLICT (signal_id, fetched_at) DO NOTHING`,
     sql`UPDATE signal_state SET last_good_record_id = (SELECT record_id FROM daily_readings WHERE signal_id = ${reading.signal_id} AND record_date = ${reading.record_date}::date),
       freshness = 'fresh', error_code = 'none', retry_after_seconds = NULL
       WHERE signal_id = ${reading.signal_id} AND last_attempt_no = ${attempt.number}::bigint`,
@@ -62,13 +68,23 @@ export async function readBoard(signalId = source.signal_id): Promise<BoardState
   const [result] = await sql`SELECT
     (SELECT row_to_json(s) FROM signal_state s WHERE s.signal_id = ${signalId}) AS state,
     (SELECT row_to_json(d) FROM daily_readings d JOIN signal_state s ON s.last_good_record_id = d.record_id WHERE s.signal_id = ${signalId}) AS current,
-    COALESCE((SELECT json_agg(d ORDER BY d.record_date DESC) FROM (SELECT * FROM daily_readings WHERE signal_id = ${signalId} ORDER BY record_date DESC LIMIT 14) d), '[]'::json) AS records`;
+    COALESCE((SELECT json_agg(d ORDER BY d.record_date DESC) FROM (SELECT * FROM daily_readings WHERE signal_id = ${signalId} ORDER BY record_date DESC LIMIT 14) d), '[]'::json) AS records,
+    COALESCE((SELECT json_agg(r ORDER BY r.fetched_at DESC) FROM (SELECT snapshot_id, record_id, reading, created_at, fetched_at FROM review_snapshots WHERE signal_id = ${signalId} ORDER BY fetched_at DESC LIMIT 20) r), '[]'::json) AS snapshots`;
   const records = (result.records as StoredRow[]).map(daily);
   return {
     reading: result.current ? daily(result.current as StoredRow).reading : null, records,
+    snapshots: (result.snapshots as ReviewSummary[]).map(reviewSummary),
     freshness: result.state?.freshness ?? null, error_code: result.state?.error_code ?? null,
     next_allowed_at: result.state?.next_allowed_at ? new Date(result.state.next_allowed_at).toISOString() : null,
     last_attempt_at: result.state?.last_attempt_at ? new Date(result.state.last_attempt_at).toISOString() : null,
     retry_after_seconds: result.state?.retry_after_seconds ?? null,
   };
+}
+
+// Normalize JSON timestamps backfilled by Postgres and newly inserted by Node
+// identically. This is an archived JSON value, never a join to mutable daily data.
+export function reviewSummary(row: ReviewSummary): ReviewSummary {
+  const reading = validateReading(row.reading);
+  return { snapshot_id: row.snapshot_id, record_id: row.record_id, created_at: new Date(row.created_at).toISOString(),
+    reading: { ...reading, fetched_at: new Date(reading.fetched_at).toISOString(), source_time: reading.source_time ? new Date(reading.source_time).toISOString() : null } };
 }

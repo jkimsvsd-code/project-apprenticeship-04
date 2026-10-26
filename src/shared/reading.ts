@@ -9,8 +9,10 @@ export type Reading = {
   record_timezone: 'Asia/Seoul'; record_date: string;
 };
 export type DailyReading = { record_id: string; reading: Reading; raw_payload: unknown };
+export type ReviewSummary = { snapshot_id: string; record_id: string; reading: Reading; created_at: string };
+export type ReviewSnapshot = ReviewSummary & { raw_payload: unknown };
 export type BoardState = {
-  reading: Reading | null; records: DailyReading[];
+  reading: Reading | null; records: DailyReading[]; snapshots: ReviewSummary[];
   freshness: 'fresh' | 'stale' | null; error_code: ErrorCode | 'none' | null;
   next_allowed_at: string | null; last_attempt_at: string | null; retry_after_seconds: number | null;
 };
@@ -23,9 +25,9 @@ export function kstDate(instant: string): string {
   return `${values.year}-${values.month}-${values.day}`;
 }
 
-export function formatKst(instant: string | null): string {
+export function formatKst(instant: string | null, seconds = false): string {
   if (!instant) return '아직 없음';
-  return new Intl.DateTimeFormat('ko-KR', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false }).format(new Date(instant));
+  return new Intl.DateTimeFormat('ko-KR', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: seconds ? '2-digit' : undefined, hour12: false }).format(new Date(instant));
 }
 
 function object(value: unknown): Record<string, unknown> {
