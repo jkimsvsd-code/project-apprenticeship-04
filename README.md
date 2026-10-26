@@ -2,7 +2,7 @@
 
 외부 데이터 조회가 실패해도 마지막 정상값을 보존하고, 값의 출처·시각·실패 이유를 설명하는 과제 4 프로젝트입니다.
 
-현재는 **공식 자산 검증과 데이터 원천 선정을 마친 단계**입니다. Open-Meteo의 서울 고정 지점 기온을 사용하며, 실행 가능한 앱·영속 저장·배포는 다음 단계입니다.
+현재는 **3단계: 기술 스택·영속 저장 방식 결정을 마친 상태**입니다. Next.js·TypeScript·Node.js 24, Neon Postgres, Vercel을 사용하기로 했습니다. 원천은 Open-Meteo의 서울 고정 지점 기온입니다. 실제 클라우드 연결·앱 구현은 4단계입니다.
 
 ## 구현 범위
 
@@ -29,6 +29,8 @@ project-apprenticeship-04/
 │   ├── submission.md         # 제출문 작성 틀
 │   ├── data-source.md        # 원천 선택·시각·이용 조건
 │   ├── task-contract.md      # 공개 계약 v2와 PDF 대조
+│   ├── stack-and-storage.md  # 기술 스택·영속 저장 결정
+│   ├── setup.md              # 실제 연결 전제와 실행 순서
 │   └── roadmap.md            # 구현 순서와 후속 확장
 ├── src/
 │   ├── README.md
@@ -65,6 +67,8 @@ project-apprenticeship-04/
 - [단계별 작업 및 커밋 원칙](CONTRIBUTING.md)
 - [데이터 원천과 이용 조건](docs/data-source.md)
 - [공개 계약 v2와 PDF의 차이](docs/task-contract.md)
+- [기술 스택과 저장 방식](docs/stack-and-storage.md)
+- [실제 연결 준비](docs/setup.md)
 
 ## 공식 자산 검증
 
@@ -78,6 +82,6 @@ node scripts/verify-task-assets.mjs
 
 ## 실행 및 공개 상태
 
-기술 스택을 정한 뒤 앱 설치·실행·테스트·배포 명령을 추가합니다. 현재 앱 실행 명령과 공개 심사 URL은 없습니다. [공개 소스 저장소](https://github.com/jkimsvsd-code/project-apprenticeship-04)는 연결되어 있습니다.
+실제 Vercel 프로젝트·Neon DB와 서버 환경변수를 연결한 뒤 앱을 설치·구현합니다. 설치 버전과 lockfile, 확인된 실행·시험·배포 명령은 4단계부터 추가합니다. 현재 앱 실행 명령과 공개 심사 URL은 없습니다. [공개 소스 저장소](https://github.com/jkimsvsd-code/project-apprenticeship-04)는 연결되어 있습니다.
 
 Open-Meteo 데이터는 출처와 CC BY 4.0을 표시하며 무료 API는 비상업 교육용으로 사용합니다. 공식 과제 자산은 원본·출처·해시를 보존합니다. 과제 자산에는 별도의 라이선스 파일이 없어 추가 권리를 임의로 부여하지 않습니다. 프로젝트 자체 라이선스는 아직 정하지 않았습니다.
