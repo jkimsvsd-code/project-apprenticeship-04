@@ -1,0 +1,15 @@
+{
+  "mobile390": {
+    "pageWidth": 390,
+    "viewport": 390
+  },
+  "mobile320": {
+    "pageWidth": 320,
+    "viewport": 320
+  },
+  "keyboardFocusOutline": {
+    "outline": "solid",
+    "text": "합성 변화량 계산 상세"
+  },
+  "waitExpiredButtonEnabled": true
+}

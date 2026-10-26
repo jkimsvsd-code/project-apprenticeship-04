@@ -12,7 +12,7 @@ export type DailyReading = { record_id: string; reading: Reading; raw_payload: u
 export type BoardState = {
   reading: Reading | null; records: DailyReading[];
   freshness: 'fresh' | 'stale' | null; error_code: ErrorCode | 'none' | null;
-  next_allowed_at: string | null; last_attempt_at: string | null;
+  next_allowed_at: string | null; last_attempt_at: string | null; retry_after_seconds: number | null;
 };
 
 export function kstDate(instant: string): string {

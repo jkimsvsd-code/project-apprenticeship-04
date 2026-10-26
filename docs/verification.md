@@ -1,6 +1,6 @@
 # 검증 계획
 
-공식 자산·참조 adapter, 실제 조회·저장에 더해 5단계 합성 재생을 확인했습니다. [5단계 검증](../evidence/implementation/stage5.json)은 단위 42개·개발 DB 통합 4개, 앱 상태와 참조 adapter의 전체 상태 비교, 실제 브라우저의 실패 5종·복구·초기화·실제 기록 불변을 다룹니다. [4단계 검증](../evidence/implementation/stage4.json)은 기본 조회·저장·재접속 자료입니다. 실제 변화량 UI·남은 UX·최종 공개·실제 이틀 검증은 아직 미완료입니다. [공식 자산 보고서](../evidence/synthetic/asset-verification.json)는 제품 판정과 구분합니다.
+공식 자산·참조 adapter, 실제 조회·저장·합성 재생에 더해 [6단계 검증](../evidence/implementation/stage6.json)에서 단위 63개·개발 DB 통합 6개·빌드, 브라우저의 실제 조회/대기·키보드 조작·320/390px·공통 계산 상세를 확인했습니다. [5단계 검증](../evidence/implementation/stage5.json)은 단위 42개·개발 DB 통합 4개, 앱 상태와 참조 adapter의 전체 상태 비교, 실제 브라우저의 실패 5종·복구·초기화·실제 기록 불변을 다룹니다. [4단계 검증](../evidence/implementation/stage4.json)은 기본 조회·저장·재접속 자료입니다. 실제 변화량 UI와 UX U1~U7은 구현했으며, 현재 실제 한 날짜의 기록 부족 안내와 격리된 합성 두 날짜의 계산 표시를 검증했습니다. 최종 공개 종합 점검·실제 이틀과 영수증 대조는 아직 미완료입니다. 사용자의 승인에 따라 공개 점검과 제출문 초안을 먼저 진행합니다. [공식 자산 보고서](../evidence/synthetic/asset-verification.json)는 제품 판정과 구분합니다.
 
 ## 공식 자산 확인
 

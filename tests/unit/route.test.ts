@@ -8,7 +8,7 @@ import { readBoard } from '../../src/server/readings';
 beforeEach(() => { vi.clearAllMocks(); });
 
 it('accepts browser origin matching Host even when Next uses an internal localhost URL', async () => {
-  vi.mocked(refreshWeather).mockResolvedValue({ state: { reading: null, records: [], freshness: null, error_code: null, next_allowed_at: null, last_attempt_at: null }, throttled: false });
+  vi.mocked(refreshWeather).mockResolvedValue({ state: { reading: null, records: [], freshness: null, error_code: null, next_allowed_at: null, last_attempt_at: null, retry_after_seconds: null }, throttled: false });
   const response = await POST(new Request('http://localhost:3000/api/board', { method: 'POST', headers: { host: '127.0.0.1:3000', origin: 'http://127.0.0.1:3000' } }));
   expect(response.status).toBe(200);
   expect(refreshWeather).toHaveBeenCalledOnce();

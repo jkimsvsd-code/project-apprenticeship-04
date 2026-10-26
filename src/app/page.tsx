@@ -12,5 +12,9 @@ export default async function Home() {
   } catch (error) {
     initialIssue = error instanceof ConfigurationError ? 'configuration' : 'storage';
   }
-  return <Board initialState={initialState} initialIssue={initialIssue} />;
+  // connection() makes this a request-time Server Component. One shared instant
+  // seeds SSR and hydration; the client clock advances only after mounting.
+  // eslint-disable-next-line react-hooks/purity
+  const initialNow = Date.now();
+  return <Board initialState={initialState} initialIssue={initialIssue} initialNow={initialNow} />;
 }

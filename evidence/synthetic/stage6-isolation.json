@@ -1,0 +1,8 @@
+{
+  "verified_at": "2026-10-26T02:55:01.670Z",
+  "environment": "development",
+  "same_day_record_id_preserved_after_actual_refresh": true,
+  "raw_value_matches_saved_value": true,
+  "replay_reset_and_recovery_actual_response_unchanged": true,
+  "sealed_t04_day_receipts": 0
+}

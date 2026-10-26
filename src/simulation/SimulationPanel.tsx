@@ -1,6 +1,7 @@
 'use client';
 
 import { useReducer } from 'react';
+import { ComparisonCard } from '../history/ComparisonCard';
 import { formatKst } from '../shared/reading';
 import { failureCopy } from '../shared/failures';
 import { failureButtons, fixtureById, replayReducer } from './fixtures';
@@ -32,7 +33,7 @@ export function SimulationPanel() {
       <dl className={styles.metrics}>
         <div><dt>마지막 정상값 · 합성</dt><dd data-testid="replay-value">{state.current_reading ? `${state.current_reading.normalized_value} ${state.current_reading.unit}` : '아직 없음'}</dd></div>
         <div><dt>일별 기록 · 합성</dt><dd data-testid="replay-row-count">{state.daily_readings.length}건</dd></div>
-        <div><dt>현재 상태</dt><dd className={stale ? styles.stale : ''} data-testid="replay-freshness">{stale ? '오래된 값' : state.status ? '정상' : '재생 전'}</dd></div>
+        <div><dt>현재 상태</dt><dd className={stale ? styles.stale : ''} data-testid="replay-freshness">{stale ? (state.current_reading ? '오래된 값' : '조회 실패 · 값 없음') : state.status ? '정상' : '재생 전'}</dd></div>
       </dl>
       {failure ? <div className={styles.failure} role="status"><h3>{failure.title}</h3><p>{failure.description}</p><p>{state.current_reading ? '마지막 정상값과 기존 일별 기록을 보존했습니다.' : '아직 정상값이 없어 표시할 값이 없습니다. 실패로 새 기록을 만들지 않았습니다.'}</p><strong>{failure.action}</strong>
         {state.last_run?.retry_after_seconds !== null && state.last_run?.retry_after_seconds !== undefined ? <p>원천이 안내한 대기: {state.last_run.retry_after_seconds}초 · 합성 시계 기준</p> : null}
@@ -40,6 +41,7 @@ export function SimulationPanel() {
     </div>
     <button type="button" className={styles.recover} disabled={!stale} onClick={() => dispatch({ type: 'fixture', id: 'T04-RECOVER-D2' })}>다시 시도 · 합성 D2 복구</button>
     <p className={styles.note}>복구는 공식 가상 2일차로 이동합니다. 실제 대기 시간을 건너뛰는 시험이며, 실제 원천을 호출하지 않습니다. 이 창에서만 재생하고 페이지를 새로고침하면 초기화됩니다.</p>
+    {state.daily_readings.length >= 2 ? <ComparisonCard readings={state.daily_readings.map((row) => row.reading)} signalId={state.current_reading!.signal_id} synthetic /> : null}
     <details className={styles.details}>
       <summary>정상 D1/D2를 순서대로 재생</summary>
       <div className={styles.normalButtons}>
@@ -58,7 +60,7 @@ export function SimulationPanel() {
         <div><dt>합성 변화</dt><dd>{state.last_delta === null ? '비교 기록 부족' : `${state.last_comparison.direction} / ${state.last_delta} ${state.last_comparison.unit}`}</dd></div>
         {lastFixture ? <div><dt>지연 / 제한</dt><dd>{lastFixture.transport.delay_ms} / {lastFixture.transport.deadline_ms} ms</dd></div> : null}
       </dl>
-      <div className={styles.tableScroll}><table><caption>합성 기록 — 실제 날짜 증거 아님</caption><thead><tr><th scope="col">가상 날짜</th><th scope="col">값</th><th scope="col">유지되는 record ID</th></tr></thead><tbody>
+      <div className={styles.tableScroll} role="region" aria-label="합성 일별 기록 표 · 가로 스크롤 가능" tabIndex={0}><table><caption>합성 기록 — 실제 날짜 증거 아님</caption><thead><tr><th scope="col">가상 날짜</th><th scope="col">값</th><th scope="col">유지되는 record ID</th></tr></thead><tbody>
         {state.daily_readings.map((row) => <tr key={row.record_id}><td>{row.record_date}</td><td>{row.normalized_value} {row.unit}</td><td>{row.record_id}</td></tr>)}
       </tbody></table></div>
       <pre data-testid="replay-state">{JSON.stringify(state, null, 2)}</pre>

@@ -1,0 +1,12 @@
+.card { margin: 20px 0; padding: 22px; border: 1px solid var(--line); border-radius: 10px; background: var(--white); overflow-wrap: anywhere; }
+.card h3 { font-size: 13px; margin: 0 0 10px; }
+.card p { color: var(--muted); font-size: 12px; margin: 8px 0; }
+.card p.change { font-size: 28px; font-weight: 700; color: var(--green); font-variant-numeric: tabular-nums; }
+.change span { font-size: 14px; }
+.card summary { cursor: pointer; font-size: 12px; font-weight: 600; padding: 10px 0; }
+.card dl { font-size: 12px; margin: 10px 0; }
+.card dl div { display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; margin: 8px 0; }
+.card dt { color: var(--muted); }
+.card dd { margin: 0; font-variant-numeric: tabular-nums; }
+.card p.formula { font-size: 16px; color: var(--ink); font-variant-numeric: tabular-nums; }
+@media (max-width: 760px) { .card { padding: 18px; } }

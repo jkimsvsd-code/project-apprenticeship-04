@@ -69,5 +69,6 @@ export async function readBoard(signalId = source.signal_id): Promise<BoardState
     freshness: result.state?.freshness ?? null, error_code: result.state?.error_code ?? null,
     next_allowed_at: result.state?.next_allowed_at ? new Date(result.state.next_allowed_at).toISOString() : null,
     last_attempt_at: result.state?.last_attempt_at ? new Date(result.state.last_attempt_at).toISOString() : null,
+    retry_after_seconds: result.state?.retry_after_seconds ?? null,
   };
 }

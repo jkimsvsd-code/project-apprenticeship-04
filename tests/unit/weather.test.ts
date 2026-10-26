@@ -4,7 +4,7 @@ import { refreshWeather } from '../../src/server/weather';
 import { beginAttempt, readBoard, saveReading, saveFailure } from '../../src/server/readings';
 
 const attempt = { number: '1', startedAt: '2026-08-24T10:00:00Z' };
-const empty = { reading: null, records: [], freshness: null, error_code: null, next_allowed_at: null, last_attempt_at: null };
+const empty = { reading: null, records: [], freshness: null, error_code: null, next_allowed_at: null, last_attempt_at: null, retry_after_seconds: null };
 beforeEach(() => { vi.clearAllMocks(); vi.mocked(beginAttempt).mockResolvedValue(attempt); vi.mocked(readBoard).mockResolvedValue(empty); vi.stubGlobal('fetch', vi.fn()); });
 afterEach(() => { vi.unstubAllGlobals(); });
 

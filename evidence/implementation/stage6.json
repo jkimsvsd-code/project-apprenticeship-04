@@ -1,0 +1,52 @@
+{
+  "verified_at": "2026-10-26T02:56:14.103595+00:00",
+  "scope": "stage6_daily_comparison_and_approved_ux",
+  "checks": {
+    "typescript": "pass",
+    "eslint": "pass",
+    "unit_tests": 63,
+    "development_database_integration_tests": 6,
+    "production_build": "pass",
+    "actual_source_refresh": "pass; Open-Meteo → API → development DB → browser",
+    "same_day_record_id": "pass; one date retains original ID after actual refresh",
+    "raw_stored_value_match": "pass",
+    "browser_pending": "pass; aria-busy true and refresh disabled",
+    "browser_wait": "pass; app interval distinguished; countdown then button re-enabled",
+    "provider_wait": "pass; 60 seconds persisted and blocks another attempt; missing metadata distinguished in render test",
+    "keyboard": "pass; skip link focuses reading, Enter/Space activate replay and comparison details, visible solid focus outline",
+    "responsive_widths": [
+      320,
+      390
+    ],
+    "page_horizontal_overflow": false,
+    "browser_console_errors": 0,
+    "comparison": "pass; latest distinct dates, same signal/unit, increase/decrease/unchanged, negative/zero, gaps, floating-point residue",
+    "synthetic_shared_comparison_ui": "pass; 105 → 120 = 15pt, dates, unit and calculation details",
+    "replay_actual_state_unchanged": true,
+    "secret_scan": "pass; repository candidates and browser build assets",
+    "environment_files_git_ignored": "pass",
+    "local_markdown_links": 53
+  },
+  "ux_scope": [
+    "U1",
+    "U2",
+    "U3",
+    "U4",
+    "U5",
+    "U6",
+    "U7"
+  ],
+  "limitations": [
+    "basic browser keyboard/mobile checks; no claim of exhaustive assistive-technology audit",
+    "actual live history has one KST date; real two-date/receipt comparison remains pending",
+    "standalone Playwright automation not yet written"
+  ],
+  "sealed_t04_day_receipts": 0,
+  "actual_two_day_verification_complete": false,
+  "next_order": [
+    "7A public deployment verification",
+    "8A submission draft",
+    "7B actual two-day and sealed receipt verification",
+    "8B final submission"
+  ]
+}

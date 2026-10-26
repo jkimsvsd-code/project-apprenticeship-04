@@ -4,6 +4,8 @@ import { parseEnv } from 'node:util';
 import { neon } from '@neondatabase/serverless';
 import { beforeAll, afterAll, describe, expect, it } from 'vitest';
 import { beginAttempt, readBoard, saveFailure, saveReading } from '../../src/server/readings';
+import { kstDate } from '../../src/shared/reading';
+import { compareReadings } from '../../src/history/comparison';
 import type { Reading } from '../../src/shared/reading';
 
 const signal = `test-stage4-${randomUUID()}`;
@@ -15,7 +17,7 @@ if (existsSync('.env.production.local')) {
 }
 const admin = neon(adminUrl);
 function reading(value: number, time = '2026-10-26T01:00:00.000Z'): Reading {
-  return { signal_id: signal, normalized_value: value, unit: '°C', source_name: 'Synthetic integration test', source_url: 'https://fixtures.aleph.invalid/test', source_time: null, fetched_at: time, record_timezone: 'Asia/Seoul', record_date: '2026-10-26' };
+  return { signal_id: signal, normalized_value: value, unit: '°C', source_name: 'Synthetic integration test', source_url: 'https://fixtures.aleph.invalid/test', source_time: null, fetched_at: time, record_timezone: 'Asia/Seoul', record_date: kstDate(time) };
 }
 async function unlock() { await admin`UPDATE signal_state SET next_allowed_at = now() - interval '1 second' WHERE signal_id = ${signal}`; }
 
@@ -57,6 +59,25 @@ describe('real development Postgres persistence (synthetic test signal only)', (
     expect(state.error_code).toBe('timeout');
     expect(state.reading?.normalized_value).toBe(13.1);
     expect(state.records).toHaveLength(1);
+  });
+  it('returns provider wait metadata and blocks another attempt until its deadline', async () => {
+    await unlock();
+    const attempt = await beginAttempt(signal);
+    await saveFailure(signal, 'rate_limit', attempt!, 60);
+    const state = await readBoard(signal);
+    expect(state.retry_after_seconds).toBe(60);
+    expect(Date.parse(state.next_allowed_at!) - Date.now()).toBeGreaterThan(50000);
+    expect(await beginAttempt(signal)).toBeNull();
+    expect(state.reading?.normalized_value).toBe(13.1);
+  });
+  it('adds a synthetic next-date row and computes comparison from persisted values', async () => {
+    await unlock();
+    const attempt = await beginAttempt(signal);
+    await saveReading(reading(12.4, '2026-10-27T01:00:00.000Z'), { synthetic: true, value: 12.4 }, attempt!);
+    const state = await readBoard(signal);
+    expect(state.records).toHaveLength(2);
+    expect(state.retry_after_seconds).toBeNull();
+    expect(compareReadings(state.records.map((record) => record.reading), signal)).toMatchObject({ state: 'comparable', signed: -0.7, direction: 'decrease', days: 1 });
   });
   it('denies DELETE and schema creation to the runtime role', async () => {
     const runtime = neon(process.env.APP_DATABASE_URL!);
