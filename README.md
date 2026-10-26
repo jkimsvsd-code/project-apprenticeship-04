@@ -2,7 +2,7 @@
 
 외부 데이터 조회가 실패해도 마지막 정상값을 보존하고, 값의 출처·시각·실패 이유를 설명하는 과제 4 프로젝트입니다.
 
-현재는 **7B 중 실제 두 날짜의 앱 기록 대조까지 완료**했습니다(2026-10-27 KST). 10월 26일 14.6°C → 27일 12.8°C, **1.8°C 감소**이며 원자료·저장값·고정 보관 화면·계산식이 일치합니다. [실제 두 날짜 증거](evidence/real/README.md)와 [제출문 초안](docs/submission.md)에 반영했습니다. 공식 영수증은 사용자 확인 기준 0건으로, 영수증 발급·대조와 최종 확정은 남아 있습니다. Next.js 16.4.3·React 19.3.1·TypeScript·Node.js 24·Neon Postgres를 사용하며 원천은 Open-Meteo의 서울 고정 지점 모델 기반 기온입니다. [고정 보관본·대조 화면](docs/preserved-readings.md)의 링크는 이후 재조회에도 유지됩니다.
+현재는 **실제 두 날짜의 앱 기록 대조와 공식 과정 기록 경로 확인을 완료**했습니다(2026-10-27 KST). 10월 26일 14.6°C → 27일 12.8°C, **1.8°C 감소**이며 원자료·저장값·고정 보관 화면·계산식이 일치합니다. [실제 두 날짜 증거](evidence/real/README.md)와 [제출문 초안](docs/submission.md)에 반영했습니다. 공식 화면의 과정 기록은 0건으로 영수증 payload 대조는 미실시입니다. 현재 웹은 과정 기록을 선택 사항으로 안내하며 보관된 공개 계약의 영수증 조건과 달라 [차이를 기록](docs/official-receipt-check.md)했습니다. 영수증 미발급을 제출·승인 차단 사유로 안내하지 않습니다. Next.js 16.4.3·React 19.3.1·TypeScript·Node.js 24·Neon Postgres를 사용하며 원천은 Open-Meteo의 서울 고정 지점 모델 기반 기온입니다. [고정 보관본·대조 화면](docs/preserved-readings.md)의 링크는 이후 재조회에도 유지됩니다.
 
 [기본 정보판 열기](https://project-apprenticeship-04.vercel.app) · [실패·복구 패널 열기](https://project-apprenticeship-04.vercel.app/#simulation) · 최종 제출 전 기능을 구현 중인 화면입니다.
 
@@ -118,6 +118,7 @@ npm run build
 - [제출문 초안](docs/submission.md)
 - [고정 기록을 이용한 실제 이틀 확인](docs/preserved-readings.md)
 - [실제 두 날짜 값·원자료·화면 대조 결과](evidence/real/README.md)
+- [공식 과정 기록 0건·웹/공개 계약 차이 확인](docs/official-receipt-check.md)
 - [구현 순서와 확장 계획](docs/roadmap.md)
 - [단계별 작업 및 커밋 원칙](CONTRIBUTING.md)
 - [데이터 원천과 이용 조건](docs/data-source.md)

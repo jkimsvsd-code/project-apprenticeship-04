@@ -1,0 +1,59 @@
+{
+  "scope": "official_T04_process_receipt_availability_and_contract_comparison",
+  "verified_at": "2026-10-26T16:07:39.438Z",
+  "source_url": "https://aleph-omega.vercel.app/cortex?panel=tasks",
+  "access": "Authenticated learner UI; only non-personal task text retained",
+  "official_ui": {
+    "task": "T04",
+    "record_count": 0,
+    "count_text": "현재 과정 기록 0개 보기",
+    "optional_heading": "선택 과정 기록 남기기 · 제출과 승인에는 영향 없음",
+    "optional_notice": "이 기록이 없어도 과제 제출·강사 승인·마스터 승인은 막히지 않습니다. 남기면 나중 평가에서 작업 시점과 진행 순서를 확인하는 보조 자료가 됩니다.",
+    "criteria": [
+      "T04-C22 서로 다른 Asia/Seoul 실제 날짜에 조회한 공개 원천 기록이 정확히 2건 보존되어 있다.",
+      "T04-C23 두 기록 각각의 공개 원천 URL·원천 관측 시각·정규화 값·단위가 저장된 일별 값과 화면 표시값에서 일치한다.",
+      "T04-C24 두 기록을 조회 날짜순으로 놓고 같은 계산 규칙으로 어제 대비 변화값을 다시 계산하면 화면값과 일치한다."
+    ],
+    "date_hint": "원천 화면에 표시된 시각을 시간대까지 적습니다. 실제 이틀 판정은 별도로 플랫폼의 Asia/Seoul 서버 날짜를 사용합니다.",
+    "timestamp_notice": "사람이 읽는 설명·공개 URL·숫자만 적으세요. 플랫폼은 작성 시각과 순서를 자동으로 보관합니다. 실제 개인정보·비밀번호·토큰은 적지 마세요.",
+    "visible_fields": [
+      "실제 공개 원천 URL",
+      "원천에 표시된 관측 시각(RFC 3339·시간대 포함)",
+      "정규화 값(숫자)",
+      "단위"
+    ],
+    "record_action": "실제 공개 원천 기록 기록 남기기"
+  },
+  "receipt_comparison": {
+    "result": "not_performed_no_official_receipts",
+    "receipts_available": 0,
+    "receipt_signature_or_seal_verified": false,
+    "payload_match_verified": false,
+    "server_created_at_date_rule_verified": false
+  },
+  "existing_app_values": {
+    "dates": [
+      "2026-10-26",
+      "2026-10-27"
+    ],
+    "values": [
+      14.6,
+      12.8
+    ],
+    "unit": "°C",
+    "signed_delta": -1.8,
+    "evidence": "two-day-verification.json"
+  },
+  "contract_discrepancy": {
+    "archived_public_contract": "public/task-assets/t04/public-contract.json v2.0.0 requires exactly two sealed t04_day receipts with distinct server_created_at KST dates",
+    "current_web_criteria": "C22-C24 describe two actual KST source records, stored/displayed fields and delta in query-date order; no sealed receipt wording in these criteria",
+    "current_process_ui": "Optional for submission/instructor/master approval, but field hint still says the actual-two-day decision uses platform KST server dates",
+    "resolution": "Do not claim that receipt issuance is mandatory for submission/approval. Receipt-based public-contract check remains unverified; final grader interpretation not established."
+  },
+  "actions": {
+    "process_record_created": false,
+    "receipt_issued": false,
+    "submission_performed": false
+  },
+  "privacy": "No account identifier, profile, ritual/attendance content, auth token, cookies or signed receipt included"
+}
