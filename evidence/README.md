@@ -1,6 +1,6 @@
 # 검증 증거
 
-공식 자산·참조 adapter, 원천 사전 조회, 기본 화면·실제 개발 DB 종단 검증, 5단계 합성 재생과 6단계 비교·UX 자료를 수집했습니다. 제출용 실제 이틀 검증·플랫폼 봉인 영수증은 아직 없습니다.
+공식 자산·참조 adapter, 원천 사전 조회, 기본 화면·실제 개발 DB 종단 검증, 5단계 합성 재생과 6단계 비교·UX와 7A 공개 접근·보안 자료를 수집했습니다. 제출용 실제 이틀 검증·플랫폼 봉인 영수증은 아직 없습니다.
 
 ## implementation/
 
@@ -13,6 +13,12 @@
 `stage5-production.json`과 `stage5-production.png`는 5단계 코드의 운영 배포 Ready·HTTP 200·브라우저 실패 5종/복구 및 실제 운영 기록 불변 확인 자료입니다. 합성 상태만 조작했고 실제 기온 새로고침은 실행하지 않았습니다.
 
 `stage6.json`은 일별 비교·경과 시간·대기·기본 접근성 검증 범위입니다. `stage6-mobile390.png`와 `stage6-mobile320.png`는 좁은 화면의 공유 계산 카드/실제 정보판, `stage6-comparison.png`는 합성 계산 상세 화면입니다. 합성 비교와 개발 DB의 폐기용 두 날짜 시험을 실제 이틀 증거로 계산하지 않습니다.
+
+`stage7a.json`과 `stage7a-public.png`는 보안 헤더 적용 후 운영 배포·실제 무로그인 조회·사용자 시크릿 창 확인의 자료입니다. 시크릿 창은 자동 브라우저 점검으로 대체했다고 주장하지 않고 사용자의 직접 확인으로 기록했습니다.
+
+## security/
+
+`public-access-and-secret-scan.json`은 쿠키 없는 요청·입력 거절·실제 기록 불변·Git/빌드/네트워크 검사 결과, `dependency-audit.json`은 npm 전체 의존성의 시점별 검사 결과입니다. `browser-replays.json`은 보안 헤더 적용 후 실패 5종/복구, `production-live-refresh.json`은 실제 운영 첫날 재조회·같은 날짜 ID 유지·다른 무인증 클라이언트의 429 대기 제한을 기록합니다. 비밀값이나 오류 로그 원문은 포함하지 않습니다.
 
 ## source-selection/
 

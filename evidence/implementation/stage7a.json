@@ -1,0 +1,71 @@
+{
+  "verified_at": "2026-10-26T03:14:01.076209+00:00",
+  "scope": "stage7A_public_access_and_bounded_security_review",
+  "status": "complete",
+  "code_commit": "1fc4de7478df3bbfc143807cd47ce7f3cf29d4cc",
+  "deployment_url": "https://project-apprenticeship-04-761r184hd-jkimsvsd-code.vercel.app",
+  "deployment_status": "READY",
+  "target": "production",
+  "artifact_url": "https://project-apprenticeship-04.vercel.app/",
+  "source_url": "https://github.com/jkimsvsd-code/project-apprenticeship-04/tree/1fc4de7478df3bbfc143807cd47ce7f3cf29d4cc",
+  "anonymous_http_access": "pass; no Cookie or Authorization request headers",
+  "incognito_manual_check": {
+    "result": "pass",
+    "reported_by": "human user in this conversation",
+    "recorded_at": "2026-10-26T03:14:01.076209+00:00",
+    "artifact_and_commit_source_opened": true,
+    "without": [
+      "account creation",
+      "login",
+      "authentication",
+      "invitation",
+      "password",
+      "OAuth",
+      "CAPTCHA"
+    ],
+    "automation_limit": "Native Chrome automation timed out; human confirmation used for the exact incognito-window check."
+  },
+  "security_headers": "pass; nosniff, DENY, referrer, permissions, limited navigation/embedding CSP, platform HSTS",
+  "secret_scan": "pass; known local secret values and credential patterns absent from repository candidates, reachable Git blobs, local browser/server build files and public network responses",
+  "dependency_advisories": {
+    "scope": "all npm dependencies, including development",
+    "known_vulnerabilities": 0,
+    "database": "npm registry; point-in-time result"
+  },
+  "api_rejections": "pass; foreign/malformed origin, cross-site, payload, arbitrary source, DELETE; actual records unchanged",
+  "public_client_runtime": "pass; five errors/recoveries and a real anonymous source refresh; no browser console errors observed",
+  "source_recoverable": "pass; anonymous fixed-commit file matches local Git blob and source ZIP returns 200",
+  "production_rate_limit": "pass; second anonymous client gets HTTP 429, throttled true",
+  "data_privacy": "reviewed: fixed public Seoul representative point, source readings and synthetic fixtures only; no visitor location or personal records",
+  "runtime_error_log_query": {
+    "window": {
+      "start": "2026-10-26T02:40:52.447Z",
+      "end": "2026-10-26T03:10:52.447Z"
+    },
+    "records_returned": 0,
+    "has_more": false,
+    "query": "level:error OR level:fatal",
+    "limitation": "Only the returned bounded 30-minute window is covered; this is not a continuous availability guarantee."
+  },
+  "sealed_t04_day_receipts": 0,
+  "actual_two_day_verification_complete": false,
+  "next": "8A submission draft; actual two-day/receipt comparison remains last",
+  "checks": {
+    "next_production_build": "pass",
+    "typescript": "pass through Next production build",
+    "eslint": "pass",
+    "credentials_and_response_headers": "pass; see detailed automated audit",
+    "security_audit_script": "pass; exit code 0"
+  },
+  "observed_counts": {
+    "secret_matches": 0,
+    "credential_pattern_matches": 0,
+    "known_local_secret_values_used": 12,
+    "repository_candidate_files_scanned": 118,
+    "reachable_git_blobs_scanned": 171,
+    "reachable_git_metadata_objects_scanned": 85,
+    "local_browser_build_files_scanned": 12,
+    "local_server_build_files_scanned": 118,
+    "deployed_browser_assets_scanned": 9
+  }
+}

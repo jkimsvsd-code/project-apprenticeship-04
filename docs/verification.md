@@ -1,6 +1,6 @@
 # 검증 계획
 
-공식 자산·참조 adapter, 실제 조회·저장·합성 재생에 더해 [6단계 검증](../evidence/implementation/stage6.json)에서 단위 63개·개발 DB 통합 6개·빌드, 브라우저의 실제 조회/대기·키보드 조작·320/390px·공통 계산 상세를 확인했습니다. [5단계 검증](../evidence/implementation/stage5.json)은 단위 42개·개발 DB 통합 4개, 앱 상태와 참조 adapter의 전체 상태 비교, 실제 브라우저의 실패 5종·복구·초기화·실제 기록 불변을 다룹니다. [4단계 검증](../evidence/implementation/stage4.json)은 기본 조회·저장·재접속 자료입니다. 실제 변화량 UI와 UX U1~U7은 구현했으며, 현재 실제 한 날짜의 기록 부족 안내와 격리된 합성 두 날짜의 계산 표시를 검증했습니다. 최종 공개 종합 점검·실제 이틀과 영수증 대조는 아직 미완료입니다. 사용자의 승인에 따라 공개 점검과 제출문 초안을 먼저 진행합니다. [공식 자산 보고서](../evidence/synthetic/asset-verification.json)는 제품 판정과 구분합니다.
+공식 자산·참조 adapter, 실제 조회·저장·합성 재생에 더해 [6단계 검증](../evidence/implementation/stage6.json)에서 단위 63개·개발 DB 통합 6개·빌드, 브라우저의 실제 조회/대기·키보드 조작·320/390px·공통 계산 상세를 확인했습니다. [5단계 검증](../evidence/implementation/stage5.json)은 단위 42개·개발 DB 통합 4개, 앱 상태와 참조 adapter의 전체 상태 비교, 실제 브라우저의 실패 5종·복구·초기화·실제 기록 불변을 다룹니다. [4단계 검증](../evidence/implementation/stage4.json)은 기본 조회·저장·재접속 자료입니다. 실제 변화량 UI와 UX U1~U7은 구현했으며, 현재 실제 한 날짜의 기록 부족 안내와 격리된 합성 두 날짜의 계산 표시를 검증했습니다. [7A 공개 접근·보안 점검](../evidence/implementation/stage7a.json)은 완료했습니다. 쿠키 없는 요청과 사용자 시크릿 창 확인을 분리해 기록했습니다. 실제 이틀과 영수증 대조는 아직 미완료입니다. 사용자의 승인에 따라 공개 점검과 제출문 초안을 먼저 진행합니다. [공식 자산 보고서](../evidence/synthetic/asset-verification.json)는 제품 판정과 구분합니다.
 
 ## 공식 자산 확인
 
@@ -39,6 +39,10 @@
 5. 각 영수증 payload의 `source_url`, `source_observed_at`, `normalized_value`, `unit`을 앱의 같은 일별값·화면값과 대조합니다. `server_created_at` 시간순으로 변화량을 재계산합니다. 학생이 별도의 인증 파일이나 증거 ZIP을 직접 만들 필요는 없습니다.
 
 합성 날짜·과거 원천 데이터·시계 조작으로 실제 조회 이틀을 대체하지 않습니다. 두 날짜가 연속되지 않으면 실제 비교 날짜를 표시합니다.
+
+## 공개 접근·보안 점검
+
+7A 결과와 재현 명령·범위·남은 항목은 [보안 점검 문서](security-review.md)를 따릅니다. 제출 직전에는 최종 commit으로 재확인합니다.
 
 ## 공개 전 확인
 

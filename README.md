@@ -2,7 +2,7 @@
 
 외부 데이터 조회가 실패해도 마지막 정상값을 보존하고, 값의 출처·시각·실패 이유를 설명하는 과제 4 프로젝트입니다.
 
-현재는 **6단계: 일별 비교·변화량 계산 상세와 UX U1~U7 구현·검증**까지 완료했습니다. Next.js 16.4.3·React 19.3.1·TypeScript·Node.js 24와 Neon Postgres를 사용합니다. 원천은 Open-Meteo의 서울 고정 지점 모델 기반 기온입니다. 실제 기록이 한 날짜뿐이면 비교 부족을 안내하며, 실제 이틀 영수증 검증은 마지막에 진행합니다.
+현재는 **7A: 공개 접근·보안 종합 점검**까지 완료했습니다. Next.js 16.4.3·React 19.3.1·TypeScript·Node.js 24와 Neon Postgres를 사용합니다. 원천은 Open-Meteo의 서울 고정 지점 모델 기반 기온입니다. 실제 기록이 한 날짜뿐이면 비교 부족을 안내하며, 실제 이틀 영수증 검증은 마지막에 진행합니다. 다음은 8A 제출문 초안입니다.
 
 [기본 정보판 열기](https://project-apprenticeship-04.vercel.app) · [실패·복구 패널 열기](https://project-apprenticeship-04.vercel.app/#simulation) · 최종 제출 전 기능을 구현 중인 화면입니다.
 
@@ -30,11 +30,13 @@ project-apprenticeship-04/
 ├── scripts/
 │   ├── migrate.mjs           # 버전·해시를 기록하는 DB migration
 │   ├── setup-runtime-role.mjs # 삭제 권한 없는 앱 역할 준비
-│   └── verify-task-assets.mjs # 공식 해시·참조 상태 전이 검사
+│   ├── verify-task-assets.mjs # 공식 해시·참조 상태 전이 검사
+│   └── audit-public-release.mjs # 고정 공개 URL·Git·배포 자산 보안 점검
 ├── docs/
 │   ├── requirements.md       # 과제 기준과 승인된 UX 범위
 │   ├── architecture.md       # 모듈 책임·저장·오류·시각 처리
 │   ├── verification.md       # 실제 조회 및 합성 시험 확인 절차
+│   ├── security-review.md    # 공개 접근·보안 점검 범위와 한계
 │   ├── simulation.md         # 합성 재생 조작·격리·판정 안내
 │   ├── submission.md         # 제출문 작성 틀
 │   ├── data-source.md        # 원천 선택·시각·이용 조건
@@ -64,7 +66,8 @@ project-apprenticeship-04/
     ├── real/                 # 공개 원천의 실제 이틀 검증 증거
     ├── source-selection/     # 원천 사전 조회; 실제 이틀 영수증 아님
     ├── implementation/       # 기본 화면·개발 DB 종단 검증
-    └── synthetic/            # 공식 해시·참조 adapter 검증 결과
+    ├── synthetic/            # 공식 해시·참조 adapter 검증 결과
+    └── security/             # 무인증 접근·비밀값·의존성 검사
 ```
 
 아직 구현하지 않은 폴더는 `.gitkeep`으로 보존합니다. 공식 자산·원천 사전 조회·기본 기능 검증 자료를 포함했으며 실제 이틀의 플랫폼 봉인 영수증은 아직 없습니다.
@@ -108,6 +111,7 @@ npm run build
 - [요구사항 및 승인 범위](docs/requirements.md)
 - [구현 구조와 데이터 원칙](docs/architecture.md)
 - [검증 계획](docs/verification.md)
+- [공개 접근·보안 점검](docs/security-review.md)
 - [합성 실패·복구 재생 안내](docs/simulation.md)
 - [제출문 작성 틀](docs/submission.md)
 - [구현 순서와 확장 계획](docs/roadmap.md)
@@ -136,3 +140,5 @@ Vercel 프로젝트와 GitHub가 연결되어 있으며 Development/Preview와 P
 5단계 코드도 운영 배포 Ready이며, 공개 패널에서 실패 5종별 105pt·1건 보존 → 120pt·2건·정상 복구를 확인했습니다. [5단계 운영 검증](evidence/implementation/stage5-production.json)에 코드 commit·무로그인 접근·실제 운영 기록 불변 대조를 기록했습니다.
 
 Open-Meteo 데이터는 출처와 CC BY 4.0을 표시하며 무료 API는 비상업 교육용으로 사용합니다. 공식 과제 자산은 원본·출처·해시를 보존합니다. 과제 자산에는 별도의 라이선스 파일이 없어 추가 권리를 임의로 부여하지 않습니다. 프로젝트 자체 라이선스는 아직 정하지 않았습니다.
+
+7A에서 결과물·커밋 고정 소스의 쿠키 없는 HTTP 접근과 사용자의 새 시크릿 창 접근을 확인했습니다. 실제 운영 조회·공통 재시도 제한, API 입력 거절, 비공개 파일 차단, Git 기록·빌드·공개 응답의 비밀값 검사와 npm 전체 의존성 검사도 통과했습니다. [7A 보고서](evidence/implementation/stage7a.json)와 [검사 범위](docs/security-review.md)를 확인하세요.

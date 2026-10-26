@@ -25,10 +25,21 @@ const patterns = [
   ['database_uri_with_password', /postgres(?:ql)?:\/\/[^\s'"`<>:]+:[^\s'"`<>@]+@/],
   ['jwt_literal', /\beyJ[A-Za-z0-9_-]{12,}\.[A-Za-z0-9_-]{12,}\.[A-Za-z0-9_-]{12,}\b/],
 ];
+let dynamicUriTemplates = 0;
 function scan(data, label) {
   for (const value of exactSecrets) if (data.includes(Buffer.from(value))) throw new Error(`Secret match in ${label}; value suppressed`);
   const text = data.toString('utf8');
-  for (const [rule, regex] of patterns) if (regex.test(text)) throw new Error(`Credential pattern ${rule} in ${label}; value suppressed`);
+  for (const [rule, regex] of patterns) {
+    for (const match of text.matchAll(new RegExp(regex.source, 'g'))) {
+      // A runtime URI builder with two complete JS interpolations contains no
+      // literal credential. Exact known-secret comparison above still applies.
+      if (rule === 'database_uri_with_password') {
+        const pair = match[0].slice(match[0].indexOf('://') + 3, -1).split(':');
+        if (pair.length === 2 && pair.every((part) => /^\$\{[^{}]+\}$/.test(part))) { dynamicUriTemplates++; continue; }
+      }
+      throw new Error(`Credential pattern ${rule} in ${label}; value suppressed`);
+    }
+  }
 }
 function git(...args) { return execFileSync('git', args, { maxBuffer: 30 * 1024 * 1024 }); }
 function walk(dir) { return existsSync(dir) ? readdirSync(dir, { withFileTypes: true }).flatMap((e) => e.isDirectory() ? walk(path.join(dir, e.name)) : [path.join(dir, e.name)]) : []; }
@@ -36,9 +47,12 @@ const files = git('ls-files', '--cached', '--others', '--exclude-standard', '-z'
 for (const file of files) scan(readFileSync(file), file);
 const objectIds = git('rev-list', '--objects', '--all').toString().trim().split('\n').map((line) => line.split(' ')[0]);
 let blobs = 0;
+let metadataObjects = 0;
 for (const id of objectIds) {
-  if (git('cat-file', '-t', id).toString().trim() !== 'blob') continue;
-  scan(git('cat-file', 'blob', id), `git blob ${id}`); blobs++;
+  const type = git('cat-file', '-t', id).toString().trim();
+  scan(git('cat-file', type, id), `git ${type} ${id}`);
+  if (type === 'blob') blobs++;
+  else metadataObjects++;
 }
 const buildFiles = walk('.next/static');
 for (const file of buildFiles) scan(readFileSync(file), file);
@@ -61,6 +75,8 @@ function assert(condition, reason) { if (!condition) throw Error(reason); }
 const page = await request(origin + '/');
 assert(page.response.status === 200 && page.text.includes('날씨의 기록'), 'Public page unavailable');
 assert(!page.response.headers.has('www-authenticate') && !page.response.headers.has('set-cookie'), 'Unexpected authentication response');
+assert(!page.response.headers.has('x-powered-by'), 'Framework version header exposed');
+assert(/^max-age=[1-9]\d*/.test(page.response.headers.get('strict-transport-security') ?? ''), 'HSTS missing');
 const redirect = await request(origin.replace('https:', 'http:') + '/');
 assert([301, 302, 307, 308].includes(redirect.response.status) && redirect.response.headers.get('location') === origin + '/', 'HTTPS redirect mismatch');
 const api = await request(origin + '/api/board');
@@ -113,7 +129,7 @@ const result = {
   verified_at: new Date().toISOString(), scope: 'anonymous_public_access_and_bounded_security_checks', code_commit: sha,
   artifact_url: origin + '/', source_url: sourceUrl, authenticated_requests: false, security_headers_required: requireSecurityHeaders,
   source_archive_sha256: createHash('sha256').update(archive.data).digest('hex'),
-  checks: { public_page: 'pass', https_redirect: 'pass', public_read_api_no_store: 'pass', public_repository: 'pass', commit_pinned_source_and_archive: 'pass', rejected_inputs: failures.map(({ name, status }) => ({ name, status })), rejected_inputs_actual_board_unchanged: true, private_paths_404: privatePaths, secret_matches: 0, credential_pattern_matches: 0, repository_candidate_files_scanned: files.length, reachable_git_blobs_scanned: blobs, local_browser_build_files_scanned: buildFiles.length, local_server_build_files_scanned: serverBuildFiles.length, deployed_browser_assets_scanned: assets.length, ignored_local_files: ignored },
+  checks: { public_page: 'pass', https_redirect: 'pass', hsts: 'pass', framework_version_header_absent: true, public_read_api_no_store: 'pass', public_repository: 'pass', commit_pinned_source_and_archive: 'pass', rejected_inputs: failures.map(({ name, status }) => ({ name, status })), rejected_inputs_actual_board_unchanged: true, private_paths_404: privatePaths, secret_matches: 0, credential_pattern_matches: 0, known_local_secret_values_used: exactSecrets.size, non_secret_dynamic_uri_templates: dynamicUriTemplates, repository_candidate_files_scanned: files.length, reachable_git_blobs_scanned: blobs, reachable_git_metadata_objects_scanned: metadataObjects, local_browser_build_files_scanned: buildFiles.length, local_server_build_files_scanned: serverBuildFiles.length, deployed_browser_assets_scanned: assets.length, ignored_local_files: ignored },
   response_headers: Object.fromEntries(headerNames.map((name) => [name, page.response.headers.get(name)])),
   requests, sealed_t04_day_receipts: 0, actual_two_day_verification_complete: false,
   limits: ['Exact known local secrets plus credential patterns; not proof of absence of every unknown secret.', 'Public client assets plus local client/server build files are scanned; the remote server bundle is not downloadable.', 'No destructive tests, authentication bypass, or arbitrary upstream requests.'],

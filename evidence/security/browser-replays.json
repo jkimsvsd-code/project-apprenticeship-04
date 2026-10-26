@@ -1,0 +1,60 @@
+{
+  "replays": [
+    {
+      "error": "timeout",
+      "preserved105": true,
+      "preservedRows": 1,
+      "recovered120": true,
+      "recoveredRows": 2,
+      "status": {
+        "freshness": "fresh",
+        "error_code": "none"
+      }
+    },
+    {
+      "error": "auth",
+      "preserved105": true,
+      "preservedRows": 1,
+      "recovered120": true,
+      "recoveredRows": 2,
+      "status": {
+        "freshness": "fresh",
+        "error_code": "none"
+      }
+    },
+    {
+      "error": "rate_limit",
+      "preserved105": true,
+      "preservedRows": 1,
+      "recovered120": true,
+      "recoveredRows": 2,
+      "status": {
+        "freshness": "fresh",
+        "error_code": "none"
+      }
+    },
+    {
+      "error": "offline",
+      "preserved105": true,
+      "preservedRows": 1,
+      "recovered120": true,
+      "recoveredRows": 2,
+      "status": {
+        "freshness": "fresh",
+        "error_code": "none"
+      }
+    },
+    {
+      "error": "schema_error",
+      "preserved105": true,
+      "preservedRows": 1,
+      "recovered120": true,
+      "recoveredRows": 2,
+      "status": {
+        "freshness": "fresh",
+        "error_code": "none"
+      }
+    }
+  ],
+  "consoleErrors": []
+}

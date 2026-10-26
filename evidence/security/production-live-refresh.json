@@ -1,0 +1,26 @@
+{
+  "verified_at": "2026-10-26T03:12:40.531Z",
+  "environment": "production",
+  "anonymous_browser_refresh": "success",
+  "same_day_row_count": 1,
+  "same_day_record_id_preserved": true,
+  "raw_stored_value_match": true,
+  "reading": {
+    "signal_id": "seoul-temperature-2m",
+    "record_date": "2026-10-26",
+    "normalized_value": 17.1,
+    "unit": "°C",
+    "source_name": "Open-Meteo",
+    "source_url": "https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current=temperature_2m&temperature_unit=celsius&timeformat=unixtime&timezone=Asia%2FSeoul",
+    "source_time": "2026-10-26T03:00:00.000Z",
+    "fetched_at": "2026-10-26T03:11:56.212Z",
+    "record_timezone": "Asia/Seoul"
+  },
+  "cooldown": {
+    "http_status": 429,
+    "throttled": true,
+    "shared_server_limit": true
+  },
+  "sealed_t04_day_receipts": 0,
+  "actual_two_day_verification_complete": false
+}
