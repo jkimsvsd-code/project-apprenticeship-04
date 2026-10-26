@@ -9,9 +9,9 @@
 ## 주소
 
 - 결과물 주소: [공개 정보판](https://project-apprenticeship-04.vercel.app/)
-- 공개 소스 주소: [전체 소스 · commit 고정](https://github.com/jkimsvsd-code/project-apprenticeship-04/tree/3e919bed097659f4931e40dc6ffca2ea9aaecfc6)
+- 공개 소스 주소: [전체 소스 · commit 고정](https://github.com/jkimsvsd-code/project-apprenticeship-04/tree/52f08304fcf0fd7e5a55994c208573272e0df89a)
 
-각 필드에는 HTTPS URL 한 개만 기재했습니다. 소스 주소는 7A 완료 시점의 전체 40자리 commit에 고정한 초안 기준입니다. 8B에서 최종 제출 대상 commit으로 갱신하고 두 주소의 무인증 접근을 다시 확인합니다.
+각 필드에는 HTTPS URL 한 개만 기재했습니다. 소스 주소는 고정 보관 기능을 검증한 전체 40자리 commit에 고정한 초안 기준입니다. 8B에서 최종 제출 대상 commit으로 갱신하고 두 주소의 무인증 접근을 다시 확인합니다.
 
 ## 짧은 확인 방법 4줄
 

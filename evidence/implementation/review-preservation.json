@@ -20,7 +20,8 @@
     "secret_scan": "pass; repository history, client/server build and known local secrets",
     "local_markdown_links": 77,
     "invalid_snapshot_route": "404 for invalid and nonexistent UUID",
-    "old_link_outside_recent_twenty": "pass; direct lookup still reads original archived value"
+    "old_link_outside_recent_twenty": "pass; direct lookup still reads original archived value",
+    "production_security_audit": "pass; exact known secrets and credential pattern matches 0"
   },
   "migrations": {
     "development": "002 applied; original daily values preserved",
@@ -32,5 +33,27 @@
     "Viewport override did not affect hidden test tabs; a 320px check has not been confirmed in this run."
   ],
   "sealed_t04_day_receipts": 0,
-  "actual_two_day_verification_complete": false
+  "actual_two_day_verification_complete": false,
+  "production_verification": {
+    "verified_at": "2026-10-26T05:24:38.556Z",
+    "code_commit": "52f08304fcf0fd7e5a55994c208573272e0df89a",
+    "public_snapshot_routes_http": 200,
+    "security_header_preserved": true,
+    "old_snapshot_summary_unchanged": true,
+    "old_raw_and_reading_unchanged": true,
+    "new_snapshot_added": true,
+    "daily_record_id_preserved": true,
+    "actual_kst_dates": [
+      "2026-10-26"
+    ],
+    "frozen_values": [
+      17.1,
+      18.9
+    ],
+    "old_link": "https://project-apprenticeship-04.vercel.app/review/d66d61da-23c1-457e-8744-68a3802a8ee4",
+    "new_link": "https://project-apprenticeship-04.vercel.app/review/5a0b7ea9-0f87-4f8d-af78-9d1cd15f295f",
+    "comparison_url": "https://project-apprenticeship-04.vercel.app/review/d66d61da-23c1-457e-8744-68a3802a8ee4?compare=5a0b7ea9-0f87-4f8d-af78-9d1cd15f295f",
+    "sealed_t04_day_receipts": 0,
+    "actual_two_day_verification_complete": false
+  }
 }

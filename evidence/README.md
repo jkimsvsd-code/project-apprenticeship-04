@@ -49,3 +49,5 @@
 ## 고정 보관 기능
 
 `implementation/review-preservation.json`과 `review-*.png`는 실제 조회별 고정 보관·화면 검증입니다. `implementation/review-immutability.json`은 개발 환경의 실제 공개 원천 재조회 전후 비교 자료입니다. 같은 KST 날짜의 17°C 보관본이 실제 재조회 후에도 그대로 남고 새 링크가 추가됨을 대조했습니다. 공식 t04_day 영수증은 여전히 0건입니다.
+
+`implementation/review-production.png`와 `review-production-immutability.json`은 공개 운영 배포에서 실제 재조회 뒤에도 원래 보관본의 원자료·정규화 값이 그대로 유지된 확인 자료입니다. 같은 실제 KST 날짜에 만든 여러 보관본이며 실제 이틀·공식 영수증 검증을 대신하지 않습니다.
